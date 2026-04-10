@@ -271,15 +271,13 @@
         const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
 async function fetchGemini(query) {
-    // Usamos la URL v1 que es la estándar para GitHub Pages
-    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    // Usamos v1beta y el prefijo completo del modelo
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
     const body = {
         contents: [{
             parts: [{
-                text: `Actúa como el Maestro Luthier de TecniPiano (Cuenca, Ecuador). 
-                Analiza de forma experta y amable este problema: ${query}. 
-                Da una posible causa y solución. Máximo 2 párrafos.`
+                text: `Eres el Maestro Luthier de TecniPiano. Analiza este problema: ${query}. Responde en máximo 2 párrafos.`
             }]
         }]
     };
@@ -294,8 +292,17 @@ async function fetchGemini(query) {
         const data = await response.json();
 
         if (!response.ok) {
-            console.error("Detalle del error:", data);
+            console.error("Error detallado de Google:", data);
             throw new Error(data.error?.message || "Error en el servidor");
+        }
+
+        return data.candidates[0].content.parts[0].text;
+
+    } catch (error) {
+        console.error("Fallo técnico:", error);
+        return "Error: " + error.message;
+    }
+}
         }
 
         return data.candidates[0].content.parts[0].text;
