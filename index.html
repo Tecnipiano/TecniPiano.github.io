@@ -331,8 +331,11 @@
         const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
         async function fetchGemini(query) {
-            // Usando v1beta para máxima compatibilidad
-            const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            // Intentamos con varios nombres de modelos comunes en v1
+            const modelsToTry = [
+                'gemini-1.5-flash',
+                'gemini-1.5-flash-latest',
+                'gemini-pro'
             
             // Instrucciones integradas directamente en el prompt
             const fullPrompt = `Actúa como un maestro luthier experto de 'TecniPiano' (Ecuador) con 30 años de experiencia. Da diagnósticos amables, profesionales y breves (máximo 2 párrafos cortos). Responde al siguiente caso: ${query}. Al final, advierte siempre que es una evaluación inicial y requiere inspección física.`;
