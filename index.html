@@ -327,71 +327,92 @@
         });
 
         // --- LOGICA IA (GEMINI API) ---
-        // CLAVE DE API PROPORCIONADA POR EL USUARIO
-        const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
+        // CLAVE DE API: Mantén esta clave segura. 
+const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
-        async function fetchGemini(query) {
-            // Se utiliza el modelo 2.5 Flash de vista previa para mayor velocidad y potencia
-            const modelName = 'gemini-2.5-flash-preview-09-2025';
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
-            
-            // Instrucciones integradas directamente en el prompt
-            const fullPrompt = `Actúa como un maestro luthier experto de 'TecniPiano' (Ecuador) con 30 años de experiencia. Da diagnósticos amables, profesionales y breves (máximo 2 párrafos cortos). Responde al siguiente caso: ${query}. Al final, advierte siempre que es una evaluación inicial y requiere inspección física.`;
-            
-            const payload = {
-                contents: [{ parts: [{ text: fullPrompt }] }]
-            };
-
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error?.message || `Error ${response.status}`);
-                }
-
-                const data = await response.json();
-                return data.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo obtener una respuesta.";
-            } catch (error) {
-                console.error("Error API:", error);
-                if (error.message.includes('Failed to fetch')) {
-                    return "<strong>Error de Red:</strong> El navegador bloqueó la conexión.<br><br><strong>Solución:</strong> Si estás abriendo el archivo localmente, usa <strong>Google Chrome</strong> o desactiva los escudos de privacidad (en Brave).";
-                }
-                return `<strong>Error técnico:</strong> ${error.message}`;
-            }
+async function fetchGemini(query) {
+    // Usamos el modelo Flash que es el más rápido para respuestas en tiempo real
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
+    const payload = {
+        contents: [{
+            parts: [{
+                text: `INSTRUCCIÓN DE SISTEMA: Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. 
+                Tienes 30 años de experiencia técnica. Tu tono es servicial, experto y muy profesional. 
+                Responde al siguiente problema técnico de forma concisa, dando una posible causa y una solución sugerida.
+                
+                CLIENTE PREGUNTA: ${query}`
+            }]
+        }],
+        generationConfig: {
+            temperature: 0.7,
+            topK: 40,
+            topP: 0.95,
+            maxOutputTokens: 400,
         }
+    };
 
-        document.getElementById('btn-diagnostico').addEventListener('click', async () => {
-            const instrument = document.getElementById('ai-instrumento').value;
-            const symptoms = document.getElementById('ai-sintomas').value;
-            const btn = document.getElementById('btn-diagnostico');
-            
-            if (!symptoms.trim()) {
-                document.getElementById('ai-error').classList.remove('hidden');
-                return;
-            }
-
-            document.getElementById('ai-error').classList.add('hidden');
-            document.getElementById('ai-empty').classList.add('hidden');
-            document.getElementById('ai-result-box').classList.add('hidden');
-            document.getElementById('ai-loading').classList.remove('hidden');
-            btn.disabled = true;
-
-            const responseText = await fetchGemini(`Instrumento: ${instrument}. Síntomas: ${symptoms}`);
-            
-            document.getElementById('ai-loading').classList.add('hidden');
-            document.getElementById('ai-result-box').classList.remove('hidden');
-            // Formatear negritas y saltos de línea de Markdown
-            document.getElementById('ai-result-text').innerHTML = responseText
-                .replace(/\n/g, '<br>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            btn.disabled = false;
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
         });
 
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || "Error en la conexión con el experto.");
+        }
+
+        const data = await response.json();
+        const textResponse = data.candidates[0].content.parts[0].text;
+        
+        // Añadimos el descargo de responsabilidad de forma elegante
+        return textResponse + "\n\n*Nota: Este análisis es preliminar. Para un presupuesto exacto, es indispensable realizar una revisión física en el taller.*";
+
+    } catch (error) {
+        console.error("Error en Diagnóstico:", error);
+        return "Lo siento, mi conexión con el taller está fallando. Por favor, contáctanos directamente por WhatsApp para ayudarte.";
+    }
+}
+
+document.getElementById('btn-diagnostico').addEventListener('click', async () => {
+    const instrument = document.getElementById('ai-instrumento').value;
+    const symptoms = document.getElementById('ai-sintomas').value;
+    const btn = document.getElementById('btn-diagnostico');
+    const resultBox = document.getElementById('ai-result-box');
+    const resultText = document.getElementById('ai-result-text');
+    const loading = document.getElementById('ai-loading');
+    const empty = document.getElementById('ai-empty');
+    
+    if (!symptoms.trim()) {
+        document.getElementById('ai-error').classList.remove('hidden');
+        return;
+    }
+
+    // Interfaz en modo carga
+    document.getElementById('ai-error').classList.add('hidden');
+    empty.classList.add('hidden');
+    resultBox.classList.add('hidden');
+    loading.classList.remove('hidden');
+    btn.disabled = true;
+    btn.innerText = "Analizando...";
+
+    const response = await fetchGemini(`Instrumento: ${instrument}. Síntomas: ${symptoms}`);
+    
+    // Mostrar resultados
+    loading.classList.add('hidden');
+    resultBox.classList.remove('hidden');
+    
+    // Formateo de texto básico (negritas y saltos de línea)
+    resultText.innerHTML = response
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+    btn.disabled = false;
+    btn.innerText = "Analizar Problema ✨";
+});
         // --- LOGICA WHATSAPP ---
         document.getElementById('contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
