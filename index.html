@@ -274,7 +274,7 @@
         async function fetchGemini(prompt) {
             // Se utiliza el modelo 1.5-flash por estabilidad y compatibilidad en GitHub Pages
             const model = "gemini-1.5-flash";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent/${model}:generateContent?key=${apiKey}`;
             
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
