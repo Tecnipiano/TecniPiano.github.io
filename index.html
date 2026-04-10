@@ -331,41 +331,14 @@
 const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
 async function fetchGemini(query) {
-            const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [{ 
-                    parts: [{ 
-                        text: `Actúa como luthier experto de TecniPiano en Cuenca, Ecuador. Da un diagnóstico breve y profesional para el siguiente problema: ${query}. Al final, recuerda que se requiere inspección física.` 
-                    }] 
-                }]
-            };
-
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const data = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(data.error?.message || "Error de comunicación con el experto.");
-                }
-
-                return data.candidates[0].content.parts[0].text;
-            } catch (error) {
-                console.error("Error técnico:", error);
-                return "Lo siento, la conexión con el taller falló. Por favor, contáctanos por WhatsApp.";
-            }
-        }
-                return data.candidates[0].content.parts[0].text;
-            } catch (error) {
-                console.error("Error técnico:", error);
-                return "Lo siento, la conexión con el taller falló. Por favor, contáctanos por WhatsApp.";
-            }
-        }
+    const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
+    const payload = {
+        contents: [{ 
+            parts: [{ 
+                text: `Actúa como luthier experto de TecniPiano en Cuenca, Ecuador. Da un diagnóstico breve y profesional para el siguiente problema: ${query}. Al final, recuerda que se requiere inspección física.` 
+            }] 
+        }]
     };
 
     try {
@@ -375,12 +348,19 @@ async function fetchGemini(query) {
             body: JSON.stringify(payload)
         });
 
+        const data = await response.json();
+
         if (!response.ok) {
-    throw new Error(data.error?.message || "Error en el servidor de Google");
-}
-return data.candidates[0].content.parts[0].text;
+            throw new Error(data.error?.message || "Error de comunicación con el experto.");
         }
 
+        return data.candidates[0].content.parts[0].text;
+
+    } catch (error) {
+        console.error("Error técnico:", error);
+        return "Lo siento, la conexión con el taller falló. Por favor, contáctanos por WhatsApp.";
+    }
+}
         const data = await response.json();
         const textResponse = data.candidates[0].content.parts[0].text;
         
