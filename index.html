@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecniPiano | Reparación de Pianos y Acordeones</title>
+    <!-- Tailwind Play CDN - Ideal para desarrollo y sitios de un solo archivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <script>
@@ -270,41 +271,36 @@
         // --- LOGICA DE IA ---
         const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
-async function fetchGemini(query) {
-    // Usamos la URL v1 que es la estándar para GitHub Pages
-    const url = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    
-    const body = {
-        contents: [{
-            parts: [{
-                text: `Actúa como el Maestro Luthier de TecniPiano (Cuenca, Ecuador). 
-                Analiza de forma experta y amable este problema: ${query}. 
-                Da una posible causa y solución. Máximo 2 párrafos.`
-            }]
-        }]
-    };
+        async function fetchGemini(prompt) {
+            // Se utiliza el modelo 1.5-flash por estabilidad y compatibilidad en GitHub Pages
+            const model = "gemini-1.5-flash";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { 
+                    parts: [{ text: "Eres un maestro luthier de TecniPiano en Cuenca, Ecuador con 30 años de experiencia. Da diagnósticos breves y técnicos de máximo 2 párrafos." }] 
+                }
+            };
 
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-            console.error("Detalle del error:", data);
-            throw new Error(data.error?.message || "Error en el servidor");
+            const attempts = 5;
+            for (let i = 0; i < attempts; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error("Fallo en la conexión con la IA");
+                    const data = await response.json();
+                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
+                } catch (e) {
+                    if (i === attempts - 1) throw e;
+                    await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
+                }
+            }
         }
 
-        return data.candidates[0].content.parts[0].text;
-
-    } catch (error) {
-        console.error("Fallo técnico:", error);
-        return "Lo sentimos, el luthier virtual está fuera de línea. Por favor, usa el botón de WhatsApp para una consulta directa.";
-    }
-}
         async function iniciarDiagnostico() {
             const sym = document.getElementById('sintomas').value.trim();
             const inst = document.getElementById('instrumento').value;
@@ -322,7 +318,7 @@ async function fetchGemini(query) {
             btn.classList.add('opacity-50');
 
             try {
-                const prompt = `Analiza este ${inst} con estos síntomas: ${sym}. Da causas posibles y sugerencia de reparación.`;
+                const prompt = `Analiza este ${inst} con estos síntomas: ${sym}. Da causas posibles y sugerencia de reparación técnica.`;
                 const res = await fetchGemini(prompt);
                 
                 const formatted = res.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
@@ -331,7 +327,7 @@ async function fetchGemini(query) {
                 document.getElementById('res-loading').classList.add('hidden');
                 document.getElementById('res-final').classList.remove('hidden');
             } catch (e) {
-                alert("Error de conexión. Revisa tu internet o clave API.");
+                alert("Error de conexión: " + e.message);
                 document.getElementById('res-loading').classList.add('hidden');
                 document.getElementById('res-empty').classList.remove('hidden');
             } finally {
