@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecniPiano | Reparación de Pianos y Acordeones</title>
+    <!-- Tailwind CSS para el diseño -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,6 +35,11 @@
             background-position: center;
             background-attachment: fixed;
         }
+        /* Transición suave para el carrusel */
+        #carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans">
@@ -44,7 +50,7 @@
             <div class="flex justify-between h-28 items-center">
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
                     <!-- Logo TecniPiano -->
-                    <img src="LOGO%20TECNIPIANO%204.png?v=3" alt="Logo TecniPiano" class="h-24 w-auto object-contain drop-shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/200x80/1c1917/ffffff?text=TecniPiano&font=Merriweather';">
+                    <img src="LOGO%20TECNIPIANO%204.png" alt="Logo TecniPiano" class="h-24 w-auto object-contain drop-shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/300x100/ffffff/1c1917?text=TecniPiano&font=Merriweather';">
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#inicio" class="text-gray-300 hover:text-brand-gold transition duration-300 font-medium">Inicio</a>
@@ -80,7 +86,7 @@
                 Devolvemos el <span class="text-brand-gold">Alma</span> a tu Instrumento
             </h1>
             <p class="text-lg md:text-2xl text-gray-300 mb-10 font-light">
-                Especialistas en restauración, afinación y reparación integral de Pianos acústicos y Acordeones de todas las marcas.
+                Especialistas en restauración, afinación y reparación integral de Pianos acústicos y Acordeones.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#servicios" class="bg-transparent border-2 border-brand-gold text-brand-gold px-8 py-3 rounded-full font-semibold hover:bg-brand-gold hover:text-white transition duration-300">
@@ -99,16 +105,13 @@
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">Especialidades del Taller</h2>
                 <div class="h-1 w-20 bg-brand-gold mx-auto rounded"></div>
-                <p class="mt-6 text-gray-600 max-w-2xl mx-auto text-lg">
-                    Trabajamos con precisión artesanal para garantizar que cada nota resuene con la perfección que el músico y el instrumento merecen.
-                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Servicio: Pianos -->
-                <div class="bg-brand-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group border border-gray-200">
+                <div class="bg-brand-light rounded-2xl overflow-hidden shadow-lg border border-gray-200">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Reparación de Piano" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Reparación de Piano" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                             <h3 class="text-2xl font-serif font-bold text-white">Pianos</h3>
                         </div>
@@ -121,16 +124,16 @@
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-6 w-6 text-brand-gold mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span><strong>Regulación del mecanismo:</strong> Ajuste de martinetes, escapes, básculas y pedales para un tacto perfecto.</span>
+                                <span><strong>Restauración integral:</strong> Mecánica, encordado y mueble.</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Servicio: Acordeones -->
-                <div class="bg-brand-light rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 group border border-gray-200">
+                <div class="bg-brand-light rounded-2xl overflow-hidden shadow-lg border border-gray-200">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Acordeones" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" alt="Reparación de Acordeón" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-6">
                             <h3 class="text-2xl font-serif font-bold text-white">Acordeones</h3>
                         </div>
@@ -139,11 +142,11 @@
                         <ul class="space-y-4 text-gray-700">
                             <li class="flex items-start">
                                 <svg class="h-6 w-6 text-brand-gold mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span><strong>Afinación de Voces:</strong> Limpieza de pitos, cambio de válvulas y encerado.</span>
+                                <span><strong>Afinación de Voces:</strong> Limpieza, cambio de válvulas y encerado profesional.</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="h-6 w-6 text-brand-gold mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                                <span><strong>Mecánica:</strong> Ajuste de fuelles, registros y nivelación de teclado.</span>
+                                <span><strong>Reparación de Fuelles:</strong> Sellado de fugas y cambio de esquineros.</span>
                             </li>
                         </ul>
                     </div>
@@ -152,7 +155,7 @@
         </div>
     </section>
 
-    <!-- Sección Nosotros (Con Carrusel) -->
+    <!-- Sección Nosotros (Con Carrusel de Fotos Reales) -->
     <section id="nosotros" class="py-24 bg-brand-dark text-white relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="flex flex-col lg:flex-row items-center gap-16">
@@ -160,9 +163,9 @@
                     <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Artesanos de la Música</h2>
                     <div class="h-1 w-20 bg-brand-gold mb-8 rounded"></div>
                     <p class="text-gray-300 text-lg mb-6 leading-relaxed">
-                        Con más de 30 años de experiencia, nuestro taller nació de la pasión profunda por la mecánica y el sonido de los instrumentos acústicos. Comprendemos el valor sentimental de tu instrumento.
+                        Con más de 30 años de experiencia, nuestro taller nació de la pasión profunda por la mecánica y el sonido de los instrumentos acústicos.
                     </p>
-                    <div class="grid grid-cols-2 gap-6">
+                    <div class="grid grid-cols-2 gap-6 mt-8">
                         <div class="border-l-4 border-brand-gold pl-4">
                             <h4 class="text-3xl font-bold text-white">+500</h4>
                             <p class="text-gray-400">Instrumentos Restaurados</p>
@@ -174,20 +177,23 @@
                     </div>
                 </div>
                 
-                <!-- Carrusel de Imágenes -->
+                <!-- Carrusel Dinámico -->
                 <div class="lg:w-1/2 w-full relative group">
-                    <div class="relative w-full overflow-hidden rounded-xl shadow-2xl ring-4 ring-brand-wood/30 bg-black">
-                        <div id="carousel-inner" class="flex transition-transform duration-500 ease-in-out h-[350px] sm:h-[450px]">
-                            <img src="afinando%202.jpg" alt="Afinando" class="w-full h-full object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1c1917/ffffff?text=Afinación&font=Merriweather';">
-                            <img src="lubricando.jpg" alt="Lubricando" class="w-full h-full object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1c1917/ffffff?text=Mantenimiento&font=Merriweather';">
-                            <img src="paino%20antigua.jpg" alt="Piano Antiguo" class="w-full h-full object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1c1917/ffffff?text=Restauración&font=Merriweather';">
-                            <img src="desarmado.jpg" alt="Desarmado" class="w-full h-full object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1c1917/ffffff?text=Mecánica&font=Merriweather';">
-                            <img src="afinacion.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1c1917/ffffff?text=Precisión&font=Merriweather';">
+                    <div class="relative w-full overflow-hidden rounded-xl shadow-2xl ring-4 ring-brand-wood/30 bg-black aspect-video">
+                        <div id="carousel-inner" class="h-full">
+                            <!-- Fotos subidas por el usuario -->
+                            <img src="afinando%202.jpg" alt="Afinación de piano" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación+de+Piano';">
+                            <img src="lubricando.jpg" alt="Lubricación de mecanismo" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Mantenimiento';">
+                            <img src="paino%20antigua.jpg" alt="Restauración de piano antiguo" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Restauración';">
+                            <img src="desarmado.jpg" alt="Mecánica de acordeón" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Mecánica+de+Acordeón';">
+                            <img src="afinacion.jpg" alt="Proceso técnico" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Proceso+Técnico';">
                         </div>
-                        <button id="prevBtn" class="absolute top-1/2 left-3 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full hover:bg-brand-gold transition z-10">
+
+                        <!-- Controles -->
+                        <button id="prevBtn" class="absolute top-1/2 left-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-brand-gold transition z-10">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
-                        <button id="nextBtn" class="absolute top-1/2 right-3 -translate-y-1/2 bg-black/60 text-white p-2 rounded-full hover:bg-brand-gold transition z-10">
+                        <button id="nextBtn" class="absolute top-1/2 right-4 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-brand-gold transition z-10">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                         <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10"></div>
@@ -197,12 +203,13 @@
         </div>
     </section>
 
-    <!-- Diagnóstico IA -->
+    <!-- Sección Diagnóstico IA ✨ -->
     <section id="diagnostico" class="py-24 bg-white border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">Diagnóstico Virtual con IA ✨</h2>
                 <div class="h-1 w-20 bg-brand-gold mx-auto rounded"></div>
+                <p class="mt-4 text-gray-600">Describe el problema y recibe una orientación técnica inmediata de nuestro asistente experto.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto bg-brand-light p-8 rounded-3xl shadow-xl border border-gray-200">
@@ -216,8 +223,8 @@
                         </select>
                     </div>
                     <div class="mb-5">
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Síntomas</label>
-                        <textarea id="ai-sintomas" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-none transition resize-none" placeholder="Describe qué le sucede a tu instrumento..."></textarea>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">¿Qué síntomas nota?</label>
+                        <textarea id="ai-sintomas" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-300 outline-none transition resize-none" placeholder="Ej: Dos teclas se quedan pegadas y el pedal derecho no funciona..."></textarea>
                         <p id="ai-error" class="text-red-500 text-sm mt-2 hidden">Por favor, describe los síntomas.</p>
                     </div>
                     <button id="btn-diagnostico" class="w-full bg-brand-gold text-white font-bold py-4 rounded-xl hover:shadow-lg transition">
@@ -227,55 +234,67 @@
 
                 <div class="bg-white p-8 rounded-2xl border border-gray-100 flex flex-col justify-center min-h-[350px] shadow-inner relative">
                     <div id="ai-empty" class="text-center text-gray-400">
-                        <p class="text-lg">El diagnóstico aparecerá aquí.</p>
+                        <p class="text-lg">El diagnóstico aparecerá aquí después del análisis.</p>
                     </div>
                     <div id="ai-loading" class="hidden text-center">
-                        <p class="text-gray-600 font-medium animate-pulse">Analizando...</p>
+                        <p class="text-gray-600 font-medium animate-pulse">Analizando con el experto virtual...</p>
                     </div>
                     <div id="ai-result-box" class="hidden flex flex-col h-full">
-                        <h4 class="text-xl font-serif font-bold text-brand-dark mb-4 border-b pb-3">Resultado</h4>
-                        <div class="text-gray-700 text-base overflow-y-auto mb-6" id="ai-result-text"></div>
+                        <h4 class="text-xl font-serif font-bold text-brand-dark mb-4 border-b pb-3">Sugerencia Técnica</h4>
+                        <div class="text-gray-700 text-base overflow-y-auto mb-6 leading-relaxed" id="ai-result-text"></div>
+                        <button onclick="document.getElementById('contacto').scrollIntoView()" class="mt-auto text-brand-gold font-bold hover:underline">Solicitar revisión física →</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
+    <!-- Sección Contacto -->
     <section id="contacto" class="py-24 bg-brand-light">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-center text-3xl font-serif font-bold mb-12">Contacto Directo</h2>
-            <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg">
-                <form id="contact-form" class="space-y-6">
-                    <input type="text" id="form-nombre" required class="w-full px-4 py-3 border rounded-lg" placeholder="Tu Nombre">
-                    <input type="text" id="form-contacto" required class="w-full px-4 py-3 border rounded-lg" placeholder="Teléfono o Email">
-                    <select id="form-instrumento-contacto" class="w-full px-4 py-3 border rounded-lg bg-white">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-center text-3xl font-serif font-bold mb-12">Enviar consulta al taller</h2>
+            <form id="contact-form" class="space-y-6 bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nombre completo</label>
+                    <input type="text" id="form-nombre" required class="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-brand-gold" placeholder="Juan Pérez">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Instrumento</label>
+                    <select id="form-instrumento-contacto" class="w-full px-4 py-3 border rounded-lg bg-white outline-none">
                         <option value="Piano">Piano</option>
                         <option value="Acordeón">Acordeón</option>
                     </select>
-                    <textarea id="form-descripcion" rows="4" required class="w-full px-4 py-3 border rounded-lg" placeholder="Detalles de lo que necesita..."></textarea>
-                    <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-brand-wood transition">
-                        Enviar por WhatsApp
-                    </button>
-                </form>
-            </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Descripción del pedido</label>
+                    <textarea id="form-descripcion" rows="4" required class="w-full px-4 py-3 border rounded-lg outline-none focus:ring-2 focus:ring-brand-gold" placeholder="¿En qué podemos ayudarle?"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-brand-dark text-white font-bold py-4 rounded-lg hover:bg-black transition shadow-md">
+                    Enviar vía WhatsApp
+                </button>
+            </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="bg-brand-dark text-gray-400 py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-            <img src="LOGO%20TECNIPIANO%204.png?v=3" alt="Logo" class="h-16 w-auto mb-6">
-            <p>&copy; 2026 TecniPiano. 30 años de excelencia musical.</p>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <img src="LOGO%20TECNIPIANO%204.png" alt="Logo" class="h-16 w-auto mx-auto mb-6 object-contain">
+            <p class="mb-4">Taller de Pianos y Acordeones - 30 años de luthería profesional.</p>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="hover:text-white transition">Facebook</a>
+            </div>
+            <p class="text-sm">&copy; 2026 TecniPiano. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
-        // LÓGICA DE NAVEGACIÓN
+        // --- LOGICA DE NAVEGACION ---
         const btnMenu = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
         btnMenu?.addEventListener('click', () => menu.classList.toggle('hidden'));
 
-        // LÓGICA DEL CARRUSEL
+        // --- LOGICA DEL CARRUSEL ---
         document.addEventListener('DOMContentLoaded', () => {
             const inner = document.getElementById('carousel-inner');
             const slides = inner.children;
@@ -284,9 +303,10 @@
             const dotsContainer = document.getElementById('carousel-dots');
             let idx = 0;
 
+            // Crear puntos indicadores
             for (let i = 0; i < slides.length; i++) {
                 const dot = document.createElement('button');
-                dot.className = `w-3 h-3 rounded-full bg-white/50`;
+                dot.className = `w-3 h-3 rounded-full bg-white/50 transition-all`;
                 if(i===0) dot.classList.add('bg-brand-gold', 'w-6');
                 dot.onclick = () => { idx = i; update(); };
                 dotsContainer.appendChild(dot);
@@ -301,72 +321,85 @@
 
             nextBtn.onclick = () => { idx = (idx + 1) % slides.length; update(); };
             prevBtn.onclick = () => { idx = (idx - 1 + slides.length) % slides.length; update(); };
+            
+            // Cambio automático cada 5 segundos
             setInterval(() => { idx = (idx + 1) % slides.length; update(); }, 5000);
         });
 
-        // LÓGICA DE IA (Gemini API)
-        const apiKey = ""; // La clave se inyecta automáticamente en el entorno
+        // --- LOGICA IA (GEMINI API) ---
+        // CLAVE DE API PROPORCIONADA POR EL USUARIO
+        const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
-        async function fetchGemini(userQuery) {
-            const systemPrompt = "Eres un maestro luthier experto de TecniPiano con 30 años de experiencia. Da diagnósticos amables, profesionales y breves (máximo 2 párrafos). Advierte que es una evaluación inicial.";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+        async function fetchGemini(query) {
+            // Usando v1beta para máxima compatibilidad
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            
+            // Instrucciones integradas directamente en el prompt
+            const fullPrompt = `Actúa como un maestro luthier experto de 'TecniPiano' (Ecuador) con 30 años de experiencia. Da diagnósticos amables, profesionales y breves (máximo 2 párrafos cortos). Responde al siguiente caso: ${query}. Al final, advierte siempre que es una evaluación inicial y requiere inspección física.`;
             
             const payload = {
-                contents: [{ parts: [{ text: userQuery }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
+                contents: [{ parts: [{ text: fullPrompt }] }]
             };
 
-            const delays = [1000, 2000, 4000, 8000, 16000];
-            for (let i = 0; i < 5; i++) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error(`Error HTTP: ${response.status}`);
-                    const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo generar el diagnóstico.";
-                } catch (error) {
-                    if (i === 4) return "Error de conexión. Por favor contacte directamente al taller vía WhatsApp.";
-                    await new Promise(res => setTimeout(res, delays[i]));
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || `Error ${response.status}`);
                 }
+
+                const data = await response.json();
+                return data.candidates?.[0]?.content?.parts?.[0]?.text || "No se pudo obtener una respuesta.";
+            } catch (error) {
+                console.error("Error API:", error);
+                if (error.message.includes('Failed to fetch')) {
+                    return "<strong>Error de Red:</strong> El navegador bloqueó la conexión.<br><br><strong>Solución:</strong> Si estás abriendo el archivo localmente, usa <strong>Google Chrome</strong> o desactiva los escudos de privacidad (en Brave).";
+                }
+                return `<strong>Error técnico:</strong> ${error.message}`;
             }
         }
 
         document.getElementById('btn-diagnostico').addEventListener('click', async () => {
             const instrument = document.getElementById('ai-instrumento').value;
             const symptoms = document.getElementById('ai-sintomas').value;
-            const empty = document.getElementById('ai-empty');
-            const loading = document.getElementById('ai-loading');
-            const resultBox = document.getElementById('ai-result-box');
-            const resultText = document.getElementById('ai-result-text');
-
+            const btn = document.getElementById('btn-diagnostico');
+            
             if (!symptoms.trim()) {
                 document.getElementById('ai-error').classList.remove('hidden');
                 return;
             }
+
             document.getElementById('ai-error').classList.add('hidden');
+            document.getElementById('ai-empty').classList.add('hidden');
+            document.getElementById('ai-result-box').classList.add('hidden');
+            document.getElementById('ai-loading').classList.remove('hidden');
+            btn.disabled = true;
 
-            empty.classList.add('hidden');
-            resultBox.classList.add('hidden');
-            loading.classList.remove('hidden');
-
-            const answer = await fetchGemini(`Instrumento: ${instrument}. Síntomas: ${symptoms}`);
+            const responseText = await fetchGemini(`Instrumento: ${instrument}. Síntomas: ${symptoms}`);
             
-            loading.classList.add('hidden');
-            resultBox.classList.remove('hidden');
-            resultText.innerHTML = answer.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            document.getElementById('ai-loading').classList.add('hidden');
+            document.getElementById('ai-result-box').classList.remove('hidden');
+            // Formatear negritas y saltos de línea de Markdown
+            document.getElementById('ai-result-text').innerHTML = responseText
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            btn.disabled = false;
         });
 
-        // WHATSAPP
+        // --- LOGICA WHATSAPP ---
         document.getElementById('contact-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const nombre = document.getElementById('form-nombre').value;
             const inst = document.getElementById('form-instrumento-contacto').value;
             const desc = document.getElementById('form-descripcion').value;
-            const msg = `Hola TecniPiano, soy ${nombre}. Mi consulta sobre mi ${inst}: ${desc}`;
-            window.open(`https://wa.me/593987550137?text=${encodeURIComponent(msg)}`, '_blank');
+            const telefono = "593987550137";
+            const texto = `Hola TecniPiano, soy ${nombre}. Mi consulta sobre mi ${inst}: ${desc}`;
+            window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(texto)}`, '_blank');
         });
     </script>
 </body>
