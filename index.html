@@ -332,7 +332,7 @@ const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE";
 
 async function fetchGemini(query) {
     // Usamos el modelo Flash que es el más rápido para respuestas en tiempo real
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const endpoint = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
     
     const payload = {
         contents: [{
@@ -360,8 +360,9 @@ async function fetchGemini(query) {
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || "Error en la conexión con el experto.");
+    throw new Error(data.error?.message || "Error en el servidor de Google");
+}
+return data.candidates[0].content.parts[0].text;
         }
 
         const data = await response.json();
