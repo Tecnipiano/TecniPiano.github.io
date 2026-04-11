@@ -105,7 +105,7 @@
                 <!-- Acordeón -->
                 <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
-                        <img src="acordeones.jpg" alt="Servicio de Acordeón" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        <img src="acordeones.jpg" alt="Servicio de Acordeón" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
                     </div>
                     <div class="p-10">
                         <h3 class="text-2xl font-serif font-bold mb-4">Acordeones</h3>
@@ -141,7 +141,7 @@
             </div>
 
             <div class="lg:w-1/2 w-full">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black border border-brand-gold/30">
                     <div id="carousel-inner" class="h-full">
                         <img src="afinando%202.jpg" alt="Afinación" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
                         <img src="lubricando.jpg" alt="Mantenimiento" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Lubricación';">
@@ -149,13 +149,13 @@
                         <img src="desarmado.jpg" alt="Mecánica" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Desarme';">
                         <img src="afinacion.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
                     </div>
-                    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition">
+                    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                     </button>
-                    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition">
+                    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
                     </button>
-                    <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2"></div>
+                    <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10"></div>
                 </div>
             </div>
         </div>
@@ -181,7 +181,7 @@
                             <label class="block text-sm font-bold mb-2">Describe la falla detalladamente</label>
                             <textarea id="sintomas" rows="5" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white resize-none" placeholder="Ej: 'Mi piano tiene tres teclas que no bajan' o 'El fuelle pierde aire'..."></textarea>
                         </div>
-                        <button onclick="iniciarDiagnostico()" id="btn-analizar" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl flex justify-center items-center group">
+                        <button id="btn-diagnostico" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl flex justify-center items-center group">
                             <span id="btn-txt">Analizar Instrumento</span>
                             <span class="ml-2 group-hover:translate-x-1 transition">✨</span>
                         </button>
@@ -244,129 +244,105 @@
 
     <script>
         // --- LOGICA DEL CARRUSEL ---
-        const inner = document.getElementById('carousel-inner');
-        const slides = inner.children;
-        const dotsCont = document.getElementById('carousel-dots');
-        let idx = 0;
+        document.addEventListener('DOMContentLoaded', () => {
+            const inner = document.getElementById('carousel-inner');
+            const slides = inner.children;
+            const dotsCont = document.getElementById('carousel-dots');
+            const nextBtn = document.getElementById('nextBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            let idx = 0;
 
-        for (let i = 0; i < slides.length; i++) {
-            const dot = document.createElement('button');
-            dot.className = `w-2 h-2 rounded-full bg-white/30 transition-all`;
-            if(i===0) dot.className = `w-6 h-2 rounded-full bg-brand-gold transition-all`;
-            dot.onclick = () => { idx = i; updateCarousel(); };
-            dotsCont.appendChild(dot);
-        }
+            if (inner && dotsCont && nextBtn && prevBtn) {
+                for (let i = 0; i < slides.length; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = `w-2 h-2 rounded-full bg-white/30 transition-all`;
+                    if(i === 0) dot.className = `w-6 h-2 rounded-full bg-brand-gold transition-all`;
+                    dot.onclick = () => { idx = i; updateCarousel(); };
+                    dotsCont.appendChild(dot);
+                }
 
-        function updateCarousel() {
-            inner.style.transform = `translateX(-${idx * 100}%)`;
-            Array.from(dotsCont.children).forEach((d, i) => {
-                d.className = i === idx ? 'w-6 h-2 rounded-full bg-brand-gold transition-all' : 'w-2 h-2 rounded-full bg-white/30 transition-all';
-            });
-        }
+                function updateCarousel() {
+                    inner.style.transform = `translateX(-${idx * 100}%)`;
+                    Array.from(dotsCont.children).forEach((d, i) => {
+                        d.className = i === idx ? 'w-6 h-2 rounded-full bg-brand-gold transition-all' : 'w-2 h-2 rounded-full bg-white/30 transition-all';
+                    });
+                }
 
-        document.getElementById('nextBtn').onclick = () => { idx = (idx + 1) % slides.length; updateCarousel(); };
-        document.getElementById('prevBtn').onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); };
-        setInterval(() => { idx = (idx + 1) % slides.length; updateCarousel(); }, 6000);
-
-       
-    
+                nextBtn.onclick = () => { idx = (idx + 1) % slides.length; updateCarousel(); };
+                prevBtn.onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); };
+                setInterval(() => { idx = (idx + 1) % slides.length; updateCarousel(); }, 6000);
+            }
+        });
 
         // --- LÓGICA IA GEMINI (TECNIPIANO) ---
-const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
+        const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
-async function fetchGemini(textoAEnviar) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    const body = {
-        contents: [{
-            parts: [{
-                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico: ${textoAEnviar}. Responde de forma profesional en máximo 2 párrafos.`
-            }]
-        }]
-    };
+        async function fetchGemini(textoAEnviar) {
+            const instrument = document.getElementById('instrumento').value;
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+            const body = {
+                contents: [{
+                    parts: [{
+                        text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico de un ${instrument}: ${textoAEnviar}. Responde de forma profesional, amable y técnica en máximo 2 párrafos.`
+                    }]
+                }]
+            };
 
-    const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-    });
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(body)
+            });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || "Error de API");
-    return data.candidates[0].content.parts[0].text;
-}
-
-// Esta es la función que llama tu botón onclick="iniciarDiagnostico()"
-async function iniciarDiagnostico() {
-    const symptoms = document.getElementById('ai-sintomas').value;
-    const resultText = document.getElementById('ai-result-text');
-    const loading = document.getElementById('ai-loading');
-    const resultBox = document.getElementById('ai-result-box');
-    const empty = document.getElementById('ai-empty');
-
-    if (!symptoms.trim()) {
-        alert("Por favor, describe el problema de tu instrumento.");
-        return;
-    }
-
-    // Interfaz en modo carga
-    if(empty) empty.classList.add('hidden');
-    if(resultBox) resultBox.classList.add('hidden');
-    if(loading) loading.classList.remove('hidden');
-
-    try {
-        const response = await fetchGemini(symptoms);
-        
-        if(loading) loading.classList.add('hidden');
-        if(resultBox) resultBox.classList.remove('hidden');
-        
-        // Formateo de texto y visualización
-        if(resultText) {
-            resultText.innerHTML = response
-                .replace(/\n/g, '<br>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error?.message || "Error de API");
+            return data.candidates[0].content.parts[0].text;
         }
-            
-    } catch (error) {
-        if(loading) loading.classList.add('hidden');
-        alert("Error de conexión: " + error.message);
-    }
-}
 
-// Vinculación con el botón (Asegúrate de que el ID coincida con tu HTML)
-document.getElementById('btn-diagnostico').onclick = async () => {
-    const symptoms = document.getElementById('ai-sintomas').value;
-    const resultText = document.getElementById('ai-result-text');
-    const loading = document.getElementById('ai-loading');
-    const resultBox = document.getElementById('ai-result-box');
-    const empty = document.getElementById('ai-empty');
+        async function iniciarDiagnostico() {
+            const symptomsInput = document.getElementById('sintomas');
+            const symptoms = symptomsInput.value;
+            const resultText = document.getElementById('texto-ia');
+            const loading = document.getElementById('res-loading');
+            const resultBox = document.getElementById('res-final');
+            const empty = document.getElementById('res-empty');
+            const btn = document.getElementById('btn-diagnostico');
 
-    if (!symptoms.trim()) {
-        alert("Por favor, describe el problema de tu instrumento.");
-        return;
-    }
+            if (!symptoms.trim()) {
+                alert("Por favor, describe el problema de tu instrumento.");
+                return;
+            }
 
-    // Interfaz en modo carga
-    empty.classList.add('hidden');
-    resultBox.classList.add('hidden');
-    loading.classList.remove('hidden');
+            // Interfaz en modo carga
+            if(empty) empty.classList.add('hidden');
+            if(resultBox) resultBox.classList.add('hidden');
+            if(loading) loading.classList.remove('hidden');
+            if(btn) btn.disabled = true;
 
-    try {
-        const response = await fetchGemini(symptoms);
-        
-        loading.classList.add('hidden');
-        resultBox.classList.remove('hidden');
-        
-        // Formateo de texto
-        resultText.innerHTML = response
-            .replace(/\n/g, '<br>')
-            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            
-    } catch (error) {
-        loading.classList.add('hidden');
-        alert("Error de conexión: " + error.message);
-    }
-};            
-        
+            try {
+                const response = await fetchGemini(symptoms);
+                
+                if(loading) loading.classList.add('hidden');
+                if(resultBox) resultBox.classList.remove('hidden');
+                
+                // Formateo de texto y visualización
+                if(resultText) {
+                    resultText.innerHTML = response
+                        .replace(/\n/g, '<br>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                }
+                    
+            } catch (error) {
+                if(loading) loading.classList.add('hidden');
+                if(empty) empty.classList.remove('hidden');
+                alert("Error de conexión: " + error.message);
+            } finally {
+                if(btn) btn.disabled = false;
+            }
+        }
+
+        // Vinculación con el botón mediante el ID corregido
+        document.getElementById('btn-diagnostico').onclick = iniciarDiagnostico;
     </script>
 </body>
 </html>
