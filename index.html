@@ -268,18 +268,15 @@
         document.getElementById('prevBtn').onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); };
         setInterval(() => { idx = (idx + 1) % slides.length; updateCarousel(); }, 6000);
 
-        // --- LOGICA DE IA ---
-        const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
+       const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
-        async function fetchGemini(prompt) {
-            
-            const model = "gemini-1.5-flash";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-
+async function fetchGemini(textoAEnviar) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    
     const body = {
         contents: [{
             parts: [{
-                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema de forma experta: ${query}. Responde en máximo 2 párrafos cortos y profesionales.`
+                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico: ${textoAEnviar}. Responde de forma profesional en máximo 2 párrafos.`
             }]
         }]
     };
@@ -287,58 +284,54 @@
     try {
         const response = await fetch(url, {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
         });
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || "Error en el servidor");
-        }
-
         const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
+        if (!response.ok) throw new Error(data.error?.message || "Error de API");
 
+        return data.candidates[0].content.parts[0].text;
     } catch (error) {
-        console.error("Error técnico:", error);
-        return "Lo sentimos, el luthier virtual está fuera de línea. Por favor, usa el botón de WhatsApp.";
+        console.error("Detalle:", error);
+        throw error; // Lanza el error para que el botón lo capture
     }
 }
-        async function iniciarDiagnostico() {
-            const sym = document.getElementById('sintomas').value.trim();
-            const inst = document.getElementById('instrumento').value;
-            const btn = document.getElementById('btn-analizar');
+
+// Vinculación con el botón (Asegúrate de que el ID coincida con tu HTML)
+document.getElementById('btn-diagnostico').onclick = async () => {
+    const symptoms = document.getElementById('ai-sintomas').value;
+    const resultText = document.getElementById('ai-result-text');
+    const loading = document.getElementById('ai-loading');
+    const resultBox = document.getElementById('ai-result-box');
+    const empty = document.getElementById('ai-empty');
+
+    if (!symptoms.trim()) {
+        alert("Por favor, describe el problema de tu instrumento.");
+        return;
+    }
+
+    // Interfaz en modo carga
+    empty.classList.add('hidden');
+    resultBox.classList.add('hidden');
+    loading.classList.remove('hidden');
+
+    try {
+        const response = await fetchGemini(symptoms);
+        
+        loading.classList.add('hidden');
+        resultBox.classList.remove('hidden');
+        
+        // Formateo de texto
+        resultText.innerHTML = response
+            .replace(/\n/g, '<br>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             
-            if (!sym) {
-                alert("Por favor describe el problema.");
-                return;
-            }
-
-            document.getElementById('res-empty').classList.add('hidden');
-            document.getElementById('res-final').classList.add('hidden');
-            document.getElementById('res-loading').classList.remove('hidden');
-            btn.disabled = true;
-            btn.classList.add('opacity-50');
-
-            try {
-                const prompt = `Analiza este ${inst} con estos síntomas: ${sym}. Da causas posibles y sugerencia de reparación técnica.`;
-                const res = await fetchGemini(prompt);
-                
-                const formatted = res.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                document.getElementById('texto-ia').innerHTML = formatted;
-                
-                document.getElementById('res-loading').classList.add('hidden');
-                document.getElementById('res-final').classList.remove('hidden');
-            } catch (e) {
-                alert("Error de conexión: " + e.message);
-                document.getElementById('res-loading').classList.add('hidden');
-                document.getElementById('res-empty').classList.remove('hidden');
-            } finally {
-                btn.disabled = false;
-                btn.classList.remove('opacity-50');
-            }
+    } catch (error) {
+        loading.classList.add('hidden');
+        alert("Error de conexión: " + error.message);
+    }
+};            }
         }
     </script>
 </body>
