@@ -275,72 +275,73 @@
         });
 
         // --- LÓGICA IA GEMINI (TECNIPIANO) ---
-        const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
+        // --- LÓGICA IA CON GROQ (TECNIPIANO) ---
+const GROQ_API_KEY = "TU_LLAVE_DE_GROQ_AQUI"; // Pega aquí tu gsk_...
 
-        async function fetchGemini(textoAEnviar) {
-            const instrument = document.getElementById('instrumento').value;
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-            const body = {
-                contents: [{
-                    parts: [{
-                        text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico de un ${instrument}: ${textoAEnviar}. Responde de forma profesional, amable y técnica en máximo 2 párrafos.`
-                    }]
-                }]
-            };
-
-            const response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body)
-            });
-
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.error?.message || "Error de API");
-            return data.candidates[0].content.parts[0].text;
-        }
-
-        async function iniciarDiagnostico() {
-            const symptomsInput = document.getElementById('sintomas');
-            const symptoms = symptomsInput.value;
-            const resultText = document.getElementById('texto-ia');
-            const loading = document.getElementById('res-loading');
-            const resultBox = document.getElementById('res-final');
-            const empty = document.getElementById('res-empty');
-            const btn = document.getElementById('btn-diagnostico');
-
-            if (!symptoms.trim()) {
-                alert("Por favor, describe el problema de tu instrumento.");
-                return;
+async function fetchGroq(diagnosticoUsuario) {
+    const url = "https://api.groq.com/openai/v1/chat/completions";
+    
+    const cuerpo = {
+        model: "llama-3.1-70b-versatile",
+        messages: [
+            {
+                role: "system",
+                content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Ofreces diagnósticos técnicos profesionales, amables y breves para pianos y acordeones. Máximo 2 párrafos."
+            },
+            {
+                role: "user",
+                content: diagnosticoUsuario
             }
+        ],
+        temperature: 0.7
+    };
 
-            // Interfaz en modo carga
-            if(empty) empty.classList.add('hidden');
-            if(resultBox) resultBox.classList.add('hidden');
-            if(loading) loading.classList.remove('hidden');
-            if(btn) btn.disabled = true;
+    const respuesta = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${GROQ_API_KEY}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(cuerpo)
+    });
 
-            try {
-                const response = await fetchGemini(symptoms);
-                
-                if(loading) loading.classList.add('hidden');
-                if(resultBox) resultBox.classList.remove('hidden');
-                
-                // Formateo de texto y visualización
-                if(resultText) {
-                    resultText.innerHTML = response
-                        .replace(/\n/g, '<br>')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                }
-                    
-            } catch (error) {
-                if(loading) loading.classList.add('hidden');
-                if(empty) empty.classList.remove('hidden');
-                alert("Error de conexión: " + error.message);
-            } finally {
-                if(btn) btn.disabled = false;
-            }
+    const datos = await respuesta.json();
+    if (!respuesta.ok) throw new Error(datos.error?.message || "Error en Groq");
+
+    return datos.choices[0].message.content;
+}
+
+// Función que dispara el botón
+async function iniciarDiagnostico() {
+    const sintomas = document.getElementById('ai-sintomas').value;
+    const resultText = document.getElementById('ai-result-text');
+    const loading = document.getElementById('ai-loading');
+    const resultBox = document.getElementById('ai-result-box');
+    const empty = document.getElementById('ai-empty');
+
+    if (!sintomas.trim()) return alert("Por favor, describe la falla.");
+
+    // Interfaz en carga
+    if(empty) empty.classList.add('hidden');
+    if(resultBox) resultBox.classList.add('hidden');
+    if(loading) loading.classList.remove('hidden');
+
+    try {
+        const resultado = await fetchGroq(sintomas);
+        
+        if(loading) loading.classList.add('hidden');
+        if(resultBox) resultBox.classList.remove('hidden');
+        
+        if(resultText) {
+            resultText.innerHTML = resultado
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         }
-
+    } catch (error) {
+        if(loading) loading.classList.add('hidden');
+        alert("Error de conexión con Groq: " + error.message);
+    }
+}
         // Vinculación con el botón mediante el ID corregido
         document.getElementById('btn-diagnostico').onclick = iniciarDiagnostico;
     </script>
