@@ -41,6 +41,8 @@
             display: flex;
             transition: transform 0.5s ease-in-out;
         }
+        /* Ajuste de visibilidad para el degradado de la nav */
+        .nav-text-shadow { text-shadow: 0px 1px 2px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans">
@@ -48,7 +50,7 @@
     <!-- Navegación con degradado de Blanco a Negro (Izquierda a Derecha) -->
     <nav class="bg-gradient-to-r from-white to-black fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
         <div class="max-w-7xl mx-auto px-4 h-28 flex justify-between items-center">
-            <!-- LOGO SECCIÓN -->
+            <!-- LOGO SECCIÓN (Grande y Visible) -->
             <div class="flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
                 <div class="bg-white/10 p-2 rounded-2xl border border-white/20 mr-4 transition-all group-hover:bg-white/20 shadow-inner">
                     <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-20 md:h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
@@ -60,9 +62,9 @@
             </div>
 
             <div class="hidden lg:flex space-x-6 items-center">
-                <a href="#inicio" class="text-gray-400 hover:text-brand-gold transition font-bold">Inicio</a>
-                <a href="#servicios" class="text-gray-400 hover:text-brand-gold transition font-bold">Servicios</a>
-                <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition font-bold">Nosotros</a>
+                <a href="#inicio" class="text-gray-500 md:text-gray-300 hover:text-brand-gold transition font-bold nav-text-shadow">Inicio</a>
+                <a href="#servicios" class="text-gray-500 md:text-gray-300 hover:text-brand-gold transition font-bold nav-text-shadow">Servicios</a>
+                <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition font-bold nav-text-shadow">Nosotros</a>
                 <a href="#diagnostico" class="text-brand-gold font-bold">Diagnóstico ✨</a>
                 
                 <!-- Botón Facebook en Navegación -->
@@ -188,7 +190,7 @@
                             <label class="block text-sm font-bold mb-2">¿Qué instrumento deseas revisar?</label>
                             <select id="instrumento" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white">
                                 <option value="Piano">Piano Acústico / Digital</option>
-                                <option value="Acordeón">Acordeón (Teclas / Botones)</option>
+                                <option value="Acordeón">Acordeón (Pitos / Botones)</option>
                             </select>
                         </div>
                         <div>
@@ -267,6 +269,29 @@
         </div>
     </section>
 
+    <!-- Sección de Ubicación con Google Maps -->
+    <section id="ubicacion" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Encuéntranos en Cuenca</h2>
+                <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full"></div>
+                <p class="mt-6 text-gray-600">Visítanos en nuestro taller para una atención personalizada.</p>
+            </div>
+            
+            <div class="rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white h-[450px]">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m13!1m1!2zM8KwNTMnNDkuMSJTIDc5wrAwMCcyNC43Ilc!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNTMnNDkuMSJTIDc5wrAwMCcyNC43Ilc!5e0!3m2!1ses!2sec!4v1712789456789!5m2!1ses!2sec" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Pie de Página con degradado Vertical -->
     <footer id="footer-contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-4 text-center">
@@ -298,13 +323,13 @@
                 </a>
 
                 <div class="text-gray-400 text-left border-l border-gray-700 pl-8">
-                    <p class="flex items-center gap-2 mb-2 font-bold"><span class="text-brand-gold text-xl">📍</span> Guncay, Cuenca, Ecuador</p>
-                    <p class="flex items-center gap-2 font-bold"><span class="text-brand-gold text-xl">🕒</span> Lun - Vie: 09:00 - 18:00</p>
+                    <p class="flex items-center gap-2 mb-2 font-bold"><span class="text-brand-gold text-xl">📍</span> Cuenca, Ecuador</p>
+                    <p class="flex items-center gap-2 font-bold"><span class="text-brand-gold text-xl">🕒</span> Lun - Sáb: 09:00 - 18:00</p>
                 </div>
             </div>
             
             <div class="pt-12 border-t border-gray-800 text-gray-500 text-xs">
-                <p>&copy; 2026 TecniPiano. La precisión de un relojero con la sensibilidad de un músico. Todos los derechos reservados.</p>
+                <p>&copy; 2026 TecniPiano. Excelencia en Luthería. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -343,20 +368,18 @@
 
         // --- LÓGICA IA GROQ ---
         // DEBES poner tu clave de Groq AQUÍ (empieza con gsk_)
-        const groqApiKey = "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"; 
+        const groqApiKey = "TU_GROQ_API_KEY_AQUI"; 
 
         async function fetchGroq(textoAEnviar) {
             const instrumentSelect = document.getElementById('instrumento');
             const instrument = instrumentSelect ? instrumentSelect.value : "Instrumento";
-            
             const url = "https://api.groq.com/openai/v1/chat/completions";
-            
             const body = {
                 model: "llama-3.3-70b-versatile",
                 messages: [
                     {
                         role: "system",
-                        content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza problemas técnicos de pianos y acordeones. Responde de forma profesional, amable, técnica y cercana en máximo 1 párrafo."
+                        content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza problemas técnicos de pianos y acordeones. Responde de forma profesional, amable y técnica en máximo 2 párrafos."
                     },
                     {
                         role: "user",
@@ -377,14 +400,12 @@
 
             const data = await response.json();
             if (!response.ok) throw new Error(data.error?.message || "Error de Groq API");
-            
             return data.choices[0].message.content;
         }
 
         async function iniciarDiagnostico() {
             const symptomsInput = document.getElementById('sintomas');
             if (!symptomsInput) return;
-            
             const symptoms = symptomsInput.value;
             const resultText = document.getElementById('texto-ia');
             const loading = document.getElementById('res-loading');
@@ -421,6 +442,7 @@
             }
         }
 
+        // Lógica del Formulario de Contacto
         document.getElementById('form-revisión').onsubmit = function(e) {
             e.preventDefault();
             const nombre = document.getElementById('contacto-nombre').value;
