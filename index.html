@@ -17,6 +17,7 @@
                             light: '#f5f5f4',
                             gold: '#d97706',
                             wood: '#78350f',
+                            facebook: '#1877F2',
                         }
                     },
                     fontFamily: {
@@ -47,23 +48,28 @@
     <!-- Navegación con degradado de Blanco a Negro (Izquierda a Derecha) -->
     <nav class="bg-gradient-to-r from-white to-black fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
         <div class="max-w-7xl mx-auto px-4 h-28 flex justify-between items-center">
-            <!-- LOGO SECCIÓN (Más grande) -->
+            <!-- LOGO SECCIÓN -->
             <div class="flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                <div class="bg-white/10 p-2 rounded-2xl border border-white/20 mr-4 transition-all group-hover:bg-white/20">
+                <div class="bg-white/10 p-2 rounded-2xl border border-white/20 mr-4 transition-all group-hover:bg-white/20 shadow-inner">
                     <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-20 md:h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
                 </div>
                 <div class="flex flex-col leading-none">
-                    <!-- Cambiado el texto 'PIANO' a brand-dark para visibilidad sobre el fondo blanco del degradado -->
                     <span class="text-2xl md:text-3xl font-serif font-bold text-brand-gold tracking-tighter">TECNI<span class="text-brand-dark md:text-white lg:text-white">PIANO</span></span>
                     <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Cuenca - Ecuador</span>
                 </div>
             </div>
 
-            <div class="hidden md:flex space-x-8 items-center">
+            <div class="hidden lg:flex space-x-6 items-center">
                 <a href="#inicio" class="text-gray-400 hover:text-brand-gold transition font-bold">Inicio</a>
                 <a href="#servicios" class="text-gray-400 hover:text-brand-gold transition font-bold">Servicios</a>
                 <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition font-bold">Nosotros</a>
                 <a href="#diagnostico" class="text-brand-gold font-bold">Diagnóstico ✨</a>
+                
+                <!-- Botón Facebook en Navegación -->
+                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="bg-brand-facebook text-white p-3 rounded-full hover:scale-110 transition shadow-lg flex items-center justify-center" title="Síguenos en Facebook">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+
                 <a href="#contacto" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
             </div>
         </div>
@@ -79,7 +85,7 @@
                 30 años de maestría en restauración y afinación de Pianos y Acordeones en Cuenca.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#servicios" class="bg-transparent border-2 border-brand-gold text-brand-gold px-8 py-3 rounded-full font-bold hover:bg-brand-gold hover:text-white transition">Nuestros Servicios</a>
+                <a href="#servicios" class="bg-transparent border-2 border-brand-gold text-brand-gold px-8 py-3 rounded-full font-bold hover:bg-brand-gold hover:text-white transition shadow-xl">Nuestros Servicios</a>
                 <a href="#diagnostico" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Diagnóstico Gratis ✨</a>
             </div>
         </div>
@@ -94,6 +100,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Piano -->
                 <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Servicio de Piano" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
@@ -109,6 +116,7 @@
                     </div>
                 </div>
 
+                <!-- Acordeón -->
                 <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
                         <img src="acordeones.jpg" alt="Servicio de Acordeón" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
@@ -259,7 +267,7 @@
         </div>
     </section>
 
-    <!-- Pie de Página con degradado Vertical (Arriba a Abajo) -->
+    <!-- Pie de Página con degradado Vertical -->
     <footer id="footer-contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex flex-col items-center mb-12">
@@ -270,14 +278,25 @@
                 <p class="text-gray-400 mt-2">Maestros en el arte de la restauración musical.</p>
             </div>
             
-            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
-                <a href="https://wa.me/593987550137" target="_blank" class="flex items-center gap-4 bg-green-600 px-8 py-4 rounded-2xl hover:bg-green-700 transition shadow-2xl">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+                <!-- Botón WhatsApp -->
+                <a href="https://wa.me/593987550137" target="_blank" class="flex items-center gap-4 bg-green-600 px-8 py-4 rounded-2xl hover:bg-green-700 transition shadow-2xl w-full md:w-auto">
                     <span class="text-3xl">📱</span>
                     <div class="text-left">
                         <span class="block text-xs uppercase opacity-70 font-bold">WhatsApp Directo</span>
                         <span class="text-lg font-bold">+593 98 755 0137</span>
                     </div>
                 </a>
+
+                <!-- Botón Facebook Footer -->
+                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="flex items-center gap-4 bg-brand-facebook px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-2xl w-full md:w-auto">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <div class="text-left">
+                        <span class="block text-xs uppercase opacity-70 font-bold">Síguenos</span>
+                        <span class="text-lg font-bold">Facebook</span>
+                    </div>
+                </a>
+
                 <div class="text-gray-400 text-left border-l border-gray-700 pl-8">
                     <p class="flex items-center gap-2 mb-2 font-bold"><span class="text-brand-gold text-xl">📍</span> Cuenca, Ecuador</p>
                     <p class="flex items-center gap-2 font-bold"><span class="text-brand-gold text-xl">🕒</span> Lun - Sáb: 09:00 - 18:00</p>
@@ -324,7 +343,7 @@
 
         // --- LÓGICA IA GROQ ---
         // DEBES poner tu clave de Groq AQUÍ (empieza con gsk_)
-        const groqApiKey = "TU_GROQ_API_KEY_AQUI"; 
+        const groqApiKey = "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"; 
 
         async function fetchGroq(textoAEnviar) {
             const instrumentSelect = document.getElementById('instrumento');
