@@ -44,26 +44,27 @@
 </head>
 <body class="bg-brand-light text-brand-dark font-sans">
 
-    <!-- Navegación -->
-    <nav class="bg-brand-dark text-white fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
-        <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
-            <!-- LOGO SECCIÓN -->
+    <!-- Navegación con degradado de Blanco a Negro (Izquierda a Derecha) -->
+    <nav class="bg-gradient-to-r from-white to-black fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
+        <div class="max-w-7xl mx-auto px-4 h-28 flex justify-between items-center">
+            <!-- LOGO SECCIÓN (Más grande) -->
             <div class="flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
-                <div class="bg-white/10 p-1.5 rounded-xl border border-white/20 mr-3 transition-all group-hover:bg-white/20">
-                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-14 md:h-16 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
+                <div class="bg-white/10 p-2 rounded-2xl border border-white/20 mr-4 transition-all group-hover:bg-white/20">
+                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-20 md:h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
                 </div>
                 <div class="flex flex-col leading-none">
-                    <span class="text-2xl md:text-3xl font-serif font-bold text-brand-gold tracking-tighter">TECNI<span class="text-white">PIANO</span></span>
-                    <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Cuenca - Ecuador</span>
+                    <!-- Cambiado el texto 'PIANO' a brand-dark para visibilidad sobre el fondo blanco del degradado -->
+                    <span class="text-2xl md:text-3xl font-serif font-bold text-brand-gold tracking-tighter">TECNI<span class="text-brand-dark md:text-white lg:text-white">PIANO</span></span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold">Cuenca - Ecuador</span>
                 </div>
             </div>
 
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="#inicio" class="text-gray-300 hover:text-brand-gold transition">Inicio</a>
-                <a href="#servicios" class="text-gray-300 hover:text-brand-gold transition">Servicios</a>
-                <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition">Nosotros</a>
+                <a href="#inicio" class="text-gray-400 hover:text-brand-gold transition font-bold">Inicio</a>
+                <a href="#servicios" class="text-gray-400 hover:text-brand-gold transition font-bold">Servicios</a>
+                <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition font-bold">Nosotros</a>
                 <a href="#diagnostico" class="text-brand-gold font-bold">Diagnóstico ✨</a>
-                <a href="#contacto" class="bg-brand-gold text-white px-6 py-2 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
+                <a href="#contacto" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
             </div>
         </div>
     </nav>
@@ -93,7 +94,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Piano -->
                 <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Servicio de Piano" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
@@ -109,7 +109,6 @@
                     </div>
                 </div>
 
-                <!-- Acordeón -->
                 <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
                     <div class="h-72 overflow-hidden">
                         <img src="acordeones.jpg" alt="Servicio de Acordeón" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
@@ -260,12 +259,12 @@
         </div>
     </section>
 
-    <!-- Pie de Página -->
-    <footer id="footer-contacto" class="bg-brand-dark py-20 text-white border-t border-brand-gold/10">
+    <!-- Pie de Página con degradado Vertical (Arriba a Abajo) -->
+    <footer id="footer-contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex flex-col items-center mb-12">
-                <div class="bg-white p-3 rounded-2xl mb-6 inline-block">
-                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-16 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
+                <div class="bg-white p-4 rounded-2xl mb-6 inline-block shadow-lg">
+                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
                 </div>
                 <h2 class="text-3xl font-serif font-bold">TecniPiano</h2>
                 <p class="text-gray-400 mt-2">Maestros en el arte de la restauración musical.</p>
