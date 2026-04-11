@@ -278,38 +278,44 @@
         // --- LÓGICA IA CON GROQ (TECNIPIANO) ---
 const GROQ_API_KEY = "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"; // Pega aquí tu gsk_...
 
-async function fetchGroq(diagnosticoUsuario) {
-    const url = "https://api.groq.com/openai/v1/chat/completions";
-    
-    const cuerpo = {
-        model: "llama-3.1-70b-versatile",
-        messages: [
-            {
-                role: "system",
-                content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Ofreces diagnósticos técnicos profesionales, amables y breves para pianos y acordeones. Máximo 2 párrafos."
-            },
-            {
-                role: "user",
-                content: diagnosticoUsuario
-            }
-        ],
-        temperature: 0.7
-    };
+async function fetchGroq(textoAEnviar) {
+            const instrumentSelect = document.getElementById('instrumento');
+            const instrument = instrumentSelect ? instrumentSelect.value : "Instrumento";
+            
+            // Punto de conexión de la API de Groq
+            const url = "https://api.groq.com/openai/v1/chat/completions";
+            
+            // Usamos llama-3.3-70b-versatile que es el modelo actual y potente de Groq
+            const body = {
+                model: "llama-3.3-70b-versatile",
+                messages: [
+                    {
+                        role: "system",
+                        content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza problemas técnicos de pianos y acordeones. Responde de forma profesional, amable y técnica en máximo 2 párrafos."
+                    },
+                    {
+                        role: "user",
+                        content: `Analiza este problema de un ${instrument}: ${textoAEnviar}`
+                    }
+                ],
+                temperature: 0.7
+            };
 
-    const respuesta = await fetch(url, {
-        method: "POST",
-        headers: {
-            "Authorization": `Bearer ${GROQ_API_KEY}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(cuerpo)
-    });
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${groqApiKey}`
+                },
+                body: JSON.stringify(body)
+            });
 
-    const datos = await respuesta.json();
-    if (!respuesta.ok) throw new Error(datos.error?.message || "Error en Groq");
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error?.message || "Error de Groq API");
+            
+            return data.choices[0].message.content;
+        }
 
-    return datos.choices[0].message.content;
-}
 
 // Función que dispara el botón
 async function iniciarDiagnostico() {
