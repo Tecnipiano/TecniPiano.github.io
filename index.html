@@ -272,35 +272,40 @@
         const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
 
         async function fetchGemini(prompt) {
-            // Se utiliza el modelo 2.0-flash por estabilidad y compatibilidad en GitHub Pages
-            const model = "gemini-2.0-flash";
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent/${model}:generateContent?key=${apiKey}`;
             
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { 
-                    parts: [{ text: "Eres un maestro luthier de TecniPiano en Cuenca, Ecuador con 30 años de experiencia. Da diagnósticos breves y técnicos de máximo 2 párrafos." }] 
-                }
-            };
+            const model = "gemini-1.5-flash";
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
-            const attempts = 5;
-            for (let i = 0; i < attempts; i++) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error("Fallo en la conexión con la IA");
-                    const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (e) {
-                    if (i === attempts - 1) throw e;
-                    await new Promise(r => setTimeout(r, 1000 * Math.pow(2, i)));
-                }
-            }
+    const body = {
+        contents: [{
+            parts: [{
+                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema de forma experta: ${query}. Responde en máximo 2 párrafos cortos y profesionales.`
+            }]
+        }]
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || "Error en el servidor");
         }
 
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+
+    } catch (error) {
+        console.error("Error técnico:", error);
+        return "Lo sentimos, el luthier virtual está fuera de línea. Por favor, usa el botón de WhatsApp.";
+    }
+}
         async function iniciarDiagnostico() {
             const sym = document.getElementById('sintomas').value.trim();
             const inst = document.getElementById('instrumento').value;
