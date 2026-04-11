@@ -268,33 +268,7 @@
         document.getElementById('prevBtn').onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); };
         setInterval(() => { idx = (idx + 1) % slides.length; updateCarousel(); }, 6000);
 
-       const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
-
-async function fetchGemini(textoAEnviar) {
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-    
-    const body = {
-        contents: [{
-            parts: [{
-                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico: ${textoAEnviar}. Responde de forma profesional en máximo 2 párrafos.`
-            }]
-        }]
-    };
-
-    try {
-        const response = await fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body)
-        });
-
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error?.message || "Error de API");
-
-        return data.candidates[0].content.parts[0].text;
-    } catch (error) {
-        console.error("Detalle:", error);
-        throw error; // Lanza el error para que el botón lo capture
+       
     }
 }
         // --- LÓGICA IA GEMINI (TECNIPIANO) ---
