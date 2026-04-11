@@ -297,6 +297,66 @@ async function fetchGemini(textoAEnviar) {
         throw error; // Lanza el error para que el botón lo capture
     }
 }
+        // --- LÓGICA IA GEMINI (TECNIPIANO) ---
+const apiKey = "AIzaSyD2FYG__uqSnuxIBMSMRHGQ6A0C_pzeymE"; 
+
+async function fetchGemini(textoAEnviar) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const body = {
+        contents: [{
+            parts: [{
+                text: `Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza este problema técnico: ${textoAEnviar}. Responde de forma profesional en máximo 2 párrafos.`
+            }]
+        }]
+    };
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error?.message || "Error de API");
+    return data.candidates[0].content.parts[0].text;
+}
+
+// Esta es la función que llama tu botón onclick="iniciarDiagnostico()"
+async function iniciarDiagnostico() {
+    const symptoms = document.getElementById('ai-sintomas').value;
+    const resultText = document.getElementById('ai-result-text');
+    const loading = document.getElementById('ai-loading');
+    const resultBox = document.getElementById('ai-result-box');
+    const empty = document.getElementById('ai-empty');
+
+    if (!symptoms.trim()) {
+        alert("Por favor, describe el problema de tu instrumento.");
+        return;
+    }
+
+    // Interfaz en modo carga
+    if(empty) empty.classList.add('hidden');
+    if(resultBox) resultBox.classList.add('hidden');
+    if(loading) loading.classList.remove('hidden');
+
+    try {
+        const response = await fetchGemini(symptoms);
+        
+        if(loading) loading.classList.add('hidden');
+        if(resultBox) resultBox.classList.remove('hidden');
+        
+        // Formateo de texto y visualización
+        if(resultText) {
+            resultText.innerHTML = response
+                .replace(/\n/g, '<br>')
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+            
+    } catch (error) {
+        if(loading) loading.classList.add('hidden');
+        alert("Error de conexión: " + error.message);
+    }
+}
 
 // Vinculación con el botón (Asegúrate de que el ID coincida con tu HTML)
 document.getElementById('btn-diagnostico').onclick = async () => {
