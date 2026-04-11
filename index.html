@@ -276,9 +276,9 @@
 
     
         // --- LÓGICA IA CON GROQ (TECNIPIANO) ---
-const GROQ_API_KEY = "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"; // Pega aquí tu gsk_...
+const groqApiKey = "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"; 
 
-async function fetchGroq(textoAEnviar) {
+        async function fetchGroq(textoAEnviar) {
             const instrumentSelect = document.getElementById('instrumento');
             const instrument = instrumentSelect ? instrumentSelect.value : "Instrumento";
             
@@ -315,7 +315,6 @@ async function fetchGroq(textoAEnviar) {
             
             return data.choices[0].message.content;
         }
-
 
 // Función que dispara el botón
 async function iniciarDiagnostico() {
