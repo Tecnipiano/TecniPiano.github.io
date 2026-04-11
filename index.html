@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecniPiano | Reparación de Pianos y Acordeones</title>
-    <!-- Tailwind Play CDN - Ideal para desarrollo y sitios de un solo archivo -->
+    <!-- Tailwind Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
     <script>
@@ -68,7 +68,7 @@
                 Devolvemos el <span class="text-brand-gold">Alma</span> a tu Instrumento
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 font-light mb-10">
-                30 años de maestría en restauración y afinación de Pianos y Acordeones.
+                30 años de maestría en restauración y afinación de Pianos y Acordeones en Cuenca.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#servicios" class="bg-transparent border-2 border-brand-gold text-brand-gold px-8 py-3 rounded-full font-bold hover:bg-brand-gold hover:text-white transition">Nuestros Servicios</a>
@@ -143,11 +143,11 @@
             <div class="lg:w-1/2 w-full">
                 <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black border border-brand-gold/30">
                     <div id="carousel-inner" class="h-full">
-                        <img src="afinando%202.jpg" alt="Afinación" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
+                        <img src="afinacion.jpg" alt="Afinación" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
                         <img src="lubricando.jpg" alt="Mantenimiento" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Lubricación';">
                         <img src="paino%20antigua.png" alt="Restauración" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Restauración';">
                         <img src="desarmado.jpg" alt="Mecánica" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Desarme';">
-                        <img src="afinacion.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
+                        <img src="afinando%202.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
                     </div>
                     <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -181,7 +181,7 @@
                             <label class="block text-sm font-bold mb-2">Describe la falla detalladamente</label>
                             <textarea id="sintomas" rows="5" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white resize-none" placeholder="Ej: 'Mi piano tiene tres teclas que no bajan' o 'El fuelle pierde aire'..."></textarea>
                         </div>
-                        <button id="btn-diagnostico" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl flex justify-center items-center group">
+                        <button id="btn-diagnostico" onclick="iniciarDiagnostico()" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl flex justify-center items-center group">
                             <span id="btn-txt">Analizar Instrumento</span>
                             <span class="ml-2 group-hover:translate-x-1 transition">✨</span>
                         </button>
@@ -274,18 +274,16 @@
             }
         });
 
-    
-        // --- LÓGICA IA CON GROQ (TECNIPIANO) ---
-const groqApiKey = "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"; 
+        // --- LÓGICA IA GROQ ---
+        // DEBES poner tu clave de Groq AQUÍ (empieza con gsk_)
+        const groqApiKey = "TU_GROQ_API_KEY_AQUI"; 
 
         async function fetchGroq(textoAEnviar) {
             const instrumentSelect = document.getElementById('instrumento');
             const instrument = instrumentSelect ? instrumentSelect.value : "Instrumento";
             
-            // Punto de conexión de la API de Groq
             const url = "https://api.groq.com/openai/v1/chat/completions";
             
-            // Usamos llama-3.3-70b-versatile que es el modelo actual y potente de Groq
             const body = {
                 model: "llama-3.3-70b-versatile",
                 messages: [
@@ -316,39 +314,55 @@ const groqApiKey = "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";
             return data.choices[0].message.content;
         }
 
-// Función que dispara el botón
-async function iniciarDiagnostico() {
-    const sintomas = document.getElementById('sintomas').value;
-    const resultText = document.getElementById('ai-result-text');
-    const loading = document.getElementById('ai-loading');
-    const resultBox = document.getElementById('ai-result-box');
-    const empty = document.getElementById('ai-empty');
+        async function iniciarDiagnostico() {
+            const symptomsInput = document.getElementById('sintomas');
+            if (!symptomsInput) {
+                console.error("No se encontró el campo de síntomas");
+                return;
+            }
+            
+            const symptoms = symptomsInput.value;
+            const resultText = document.getElementById('texto-ia');
+            const loading = document.getElementById('res-loading');
+            const resultBox = document.getElementById('res-final');
+            const empty = document.getElementById('res-empty');
+            const btn = document.getElementById('btn-diagnostico');
 
-    if (!sintomas.trim()) return alert("Por favor, describe la falla.");
+            if (!symptoms.trim()) {
+                alert("Por favor, describe el problema de tu instrumento.");
+                return;
+            }
 
-    // Interfaz en carga
-    if(empty) empty.classList.add('hidden');
-    if(resultBox) resultBox.classList.add('hidden');
-    if(loading) loading.classList.remove('hidden');
+            // Interfaz en modo carga
+            if(empty) empty.classList.add('hidden');
+            if(resultBox) resultBox.classList.add('hidden');
+            if(loading) loading.classList.remove('hidden');
+            if(btn) btn.disabled = true;
 
-    try {
-        const resultado = await fetchGroq(sintomas);
-        
-        if(loading) loading.classList.add('hidden');
-        if(resultBox) resultBox.classList.remove('hidden');
-        
-        if(resultText) {
-            resultText.innerHTML = resultado
-                .replace(/\n/g, '<br>')
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            try {
+                // Llamamos a la función de Groq
+                const response = await fetchGroq(symptoms);
+                
+                if(loading) loading.classList.add('hidden');
+                if(resultBox) resultBox.classList.remove('hidden');
+                
+                // Formateo de texto y visualización
+                if(resultText) {
+                    const formatted = response
+                        .replace(/\n/g, '<br>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    resultText.innerHTML = formatted;
+                }
+                    
+            } catch (error) {
+                if(loading) loading.classList.add('hidden');
+                if(empty) empty.classList.remove('hidden');
+                alert("Error de conexión con Groq: " + error.message);
+                console.error(error);
+            } finally {
+                if(btn) btn.disabled = false;
+            }
         }
-    } catch (error) {
-        if(loading) loading.classList.add('hidden');
-        alert("Error de conexión con Groq: " + error.message);
-    }
-}
-        // Vinculación con el botón mediante el ID corregido
-        document.getElementById('btn-diagnostico').onclick = iniciarDiagnostico;
     </script>
 </body>
 </html>
