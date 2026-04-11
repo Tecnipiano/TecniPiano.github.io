@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18071405610"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18071405610');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18071405610"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-18071405610');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecniPiano | Reparación de Pianos y Acordeones</title>
@@ -52,18 +51,63 @@
         }
         /* Ajuste de visibilidad para el degradado de la nav */
         .nav-text-shadow { text-shadow: 0px 1px 2px rgba(0,0,0,0.1); }
+
+        /* ESTILO TECLA DE MARFIL (BLANCA) */
+        .btn-marfil {
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f6e5 100%);
+            color: #1c1917;
+            border: 1px solid #d1d5db;
+            border-bottom: 5px solid #b5b2a2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .btn-marfil::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+            pointer-events: none;
+        }
+        .btn-marfil:hover { transform: translateY(1px); border-bottom-width: 3px; }
+        .btn-marfil:active { transform: translateY(4px); border-bottom-width: 0px; }
+
+        /* ESTILO TECLA NEGRA (ÉBANO) */
+        .btn-tecla-negra {
+            background: linear-gradient(to bottom, #333333 0%, #000000 100%);
+            color: #ffffff;
+            border: 1px solid #000000;
+            border-bottom: 8px solid #1a1a1a;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+            position: relative;
+            transition: all 0.2s ease;
+        }
+        .btn-tecla-negra::before {
+            content: '';
+            position: absolute; top: 2px; left: 5%; right: 5%; height: 2px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+        .btn-tecla-negra:hover {
+            background: linear-gradient(to bottom, #444444 0%, #111111 100%);
+            transform: translateY(2px);
+            border-bottom-width: 4px;
+        }
+        .btn-tecla-negra:active {
+            transform: translateY(6px);
+            border-bottom-width: 0px;
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
+        }
     </style>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans">
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M97XHQDV"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M97XHQDV"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- Navegación con degradado de Blanco a Negro (Izquierda a Derecha) -->
+    <!-- Navegación -->
     <nav class="bg-gradient-to-r from-white to-black fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
         <div class="max-w-7xl mx-auto px-4 h-28 flex justify-between items-center">
-            <!-- LOGO SECCIÓN (Grande y Visible) -->
             <div class="flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
                 <div class="bg-white/10 p-2 rounded-2xl border border-white/20 mr-4 transition-all group-hover:bg-white/20 shadow-inner">
                     <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-20 md:h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
@@ -79,13 +123,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <a href="#servicios" class="text-gray-500 md:text-gray-300 hover:text-brand-gold transition font-bold nav-text-shadow">Servicios</a>
                 <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition font-bold nav-text-shadow">Nosotros</a>
                 <a href="#diagnostico" class="text-brand-gold font-bold">Diagnóstico ✨</a>
-                
-                <!-- Botón Facebook en Navegación -->
-                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="hover:scale-110 transition-transform" title="Síguenos en Facebook">
+                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="hover:scale-110 transition-transform">
                     <img src="logo facebook.png" alt="Facebook" class="w-8 h-8 object-contain">
                 </a>
-
-                <a href="#contacto" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
+                <a href="#formulario" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
             </div>
         </div>
     </nav>
@@ -99,93 +140,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="text-xl md:text-2xl text-gray-300 font-light mb-10">
                 30 años de maestría en restauración y afinación de Pianos y Acordeones en Cuenca.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#servicios" class="bg-transparent border-2 border-brand-gold text-brand-gold px-8 py-3 rounded-full font-bold hover:bg-brand-gold hover:text-white transition shadow-xl">Nuestros Servicios</a>
-                <a href="#diagnostico" class="bg-brand-gold text-white px-8 py-3 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Diagnóstico Gratis ✨</a>
+            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+                <a href="#servicios" class="btn-tecla-negra px-10 py-4 rounded-lg font-bold text-lg flex items-center gap-3 min-w-[240px] justify-center">Nuestros Servicios 🎹</a>
+                <a href="#diagnostico" class="btn-marfil px-10 py-4 rounded-lg font-bold text-lg flex items-center gap-3 min-w-[240px] justify-center">Diagnóstico Gratis ✨</a>
             </div>
         </div>
     </section>
 
     <!-- Servicios -->
     <section id="servicios" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Especialidades del Taller</h2>
-                <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Piano -->
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
-                    <div class="h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Servicio de Piano" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    </div>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Especialidades del Taller</h2>
+            <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full mb-16"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Pianos" class="h-72 w-full object-cover">
                     <div class="p-10">
                         <h3 class="text-2xl font-serif font-bold mb-4">Pianos Acústicos</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Afinación profesional a 440Hz, regulación de maquinaria, cambio de encordado y restauración estética de muebles.</p>
-                        <ul class="space-y-3 text-sm font-medium">
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🎹</span> Afinación y Entonación</li>
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🎹</span> Reparación de Teclado</li>
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🎹</span> Mantenimiento Preventivo</li>
-                        </ul>
+                        <p class="text-gray-600">Afinación profesional a 440Hz, regulación de maquinaria y restauración estética.</p>
                     </div>
                 </div>
-
-                <!-- Acordeón -->
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2">
-                    <div class="h-72 overflow-hidden">
-                        <img src="acordeones.png" alt="Servicio de Acordeón" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
-                    </div>
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100">
+                    <img src="acordeones.png" alt="Acordeones" class="h-72 w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
                     <div class="p-10">
                         <h3 class="text-2xl font-serif font-bold mb-4">Acordeones</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">Afinación de voces, cambio de válvulas, reparación de fuelles y ajuste de mecánica de bajos y teclado.</p>
-                        <ul class="space-y-3 text-sm font-medium">
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🪗</span> Afinación Musette/Seca</li>
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🪗</span> Sellado de Fugas de Aire</li>
-                            <li class="flex items-center text-brand-wood"><span class="mr-2">🪗</span> Cambio de Voces</li>
-                        </ul>
+                        <p class="text-gray-600">Afinación de voces, reparación de fuelles y ajuste de mecánica de todas las marcas.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Nosotros & Carrusel -->
+    <!-- Nosotros -->
     <section id="nosotros" class="py-24 bg-brand-dark text-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2">
-                <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6">Artesanos de la Excelencia</h2>
-                <div class="h-1.5 w-24 bg-brand-gold mb-8 rounded-full"></div>
-                <p class="text-gray-300 text-lg mb-8 leading-relaxed italic">"Tratamos cada instrumento como si fuera nuestro, con el respeto y la precisión que la música exige."</p>
+            <div class="lg:w-1/2 text-left">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold mb-6 text-brand-gold">Artesanos de Cuenca</h2>
+                <p class="text-gray-300 text-lg mb-8 italic">"El respeto por el sonido original guía cada una de nuestras intervenciones."</p>
                 <div class="grid grid-cols-2 gap-8">
-                    <div>
-                        <span class="block text-4xl font-bold text-brand-gold">30+</span>
-                        <span class="text-gray-400 uppercase text-xs tracking-widest">Años de Trayectoria</span>
-                    </div>
-                    <div>
-                        <span class="block text-4xl font-bold text-brand-gold">500+</span>
-                        <span class="text-gray-400 uppercase text-xs tracking-widest">Pianos Afinados</span>
-                    </div>
+                    <div><span class="block text-4xl font-bold text-brand-gold">30+</span><span class="text-gray-400 text-xs font-bold uppercase">Años de Trayectoria</span></div>
+                    <div><span class="block text-4xl font-bold text-brand-gold">500+</span><span class="text-gray-400 text-xs font-bold uppercase">Instrumentos Restaurados</span></div>
                 </div>
             </div>
-
-            <div class="lg:w-1/2 w-full">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-black border border-brand-gold/30">
-                    <div id="carousel-inner" class="h-full">
-                        <img src="afinacion.jpg" alt="Afinación" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
-                        <img src="lubricando.png" alt="Mantenimiento" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Lubricación';">
-                        <img src="paino antigua.png" alt="Restauración" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Restauración';">
-                        <img src="desarmado.jpg" alt="Mecánica" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Desarme';">
-                        <img src="afinando 2.png" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
-                    </div>
-                    <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                    <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-10"></div>
+            <div class="lg:w-1/2 w-full relative h-[400px] rounded-2xl overflow-hidden border border-brand-gold/30">
+                <div id="carousel-inner" class="h-full">
+                    <img src="afinacion.jpg" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
+                    <img src="lubricando.png" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Lubricación';">
+                    <img src="afinando 2.png" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
                 </div>
+                <button id="prevBtn" class="absolute left-4 top-1/2 bg-black/50 p-2 rounded-full z-10">←</button>
+                <button id="nextBtn" class="absolute right-4 top-1/2 bg-black/50 p-2 rounded-full z-10">→</button>
+                <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
             </div>
         </div>
     </section>
@@ -193,88 +198,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Diagnóstico IA -->
     <section id="diagnostico" class="py-24 bg-white">
         <div class="max-w-6xl mx-auto px-4">
-            <div class="bg-brand-light rounded-[3rem] shadow-2xl overflow-hidden border border-gray-200 flex flex-col lg:flex-row">
-                <div class="lg:w-1/2 p-12 bg-gray-50/50">
-                    <h2 class="text-3xl font-serif font-bold mb-6">Diagnóstico Virtual con IA ✨</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">Recibe una orientación técnica preliminar inmediata. Describe qué sucede con tu instrumento y nuestra IA experta analizará los síntomas.</p>
-                    
+            <div class="bg-brand-light rounded-[3rem] shadow-2xl border border-gray-200 overflow-hidden flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 p-12 bg-gray-50/50 text-left">
+                    <h2 class="text-3xl font-serif font-bold mb-6">Diagnóstico con IA ✨</h2>
+                    <p class="text-gray-600 mb-8">Nuestra inteligencia artificial analiza los síntomas técnicos de tu piano o acordeón al instante.</p>
                     <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-bold mb-2">¿Qué instrumento deseas revisar?</label>
-                            <select id="instrumento" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white">
-                                <option value="Piano">Piano Acústico / Digital</option>
-                                <option value="Acordeón">Acordeón (Teclas / Botones)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold mb-2">Describe la falla detalladamente</label>
-                            <textarea id="sintomas" rows="5" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white resize-none" placeholder="Ej: 'Mi piano tiene tres teclas que no bajan' o 'El fuelle pierde aire'..."></textarea>
-                        </div>
-                        <button id="btn-diagnostico" onclick="iniciarDiagnostico()" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl flex justify-center items-center group">
-                            <span id="btn-txt">Analizar Instrumento</span>
-                            <span class="ml-2 group-hover:translate-x-1 transition">✨</span>
-                        </button>
+                        <select id="instrumento" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white">
+                            <option value="Piano">Piano</option>
+                            <option value="Acordeón">Acordeón</option>
+                        </select>
+                        <textarea id="sintomas" rows="5" class="w-full p-4 rounded-xl border border-gray-300 outline-none focus:ring-2 focus:ring-brand-gold bg-white resize-none" placeholder="Describe la falla..."></textarea>
+                        <button id="btn-diagnostico" onclick="iniciarDiagnostico()" class="w-full bg-brand-dark text-white font-bold py-5 rounded-xl hover:bg-black transition-all shadow-xl">Analizar Síntomas</button>
                     </div>
                 </div>
-
-                <div class="lg:w-1/2 p-12 bg-white flex flex-col justify-center min-h-[450px]">
-                    <div id="res-empty" class="text-center text-gray-400">
-                        <div class="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                        </div>
-                        <p class="text-lg">Los resultados del análisis aparecerán aquí.</p>
-                    </div>
-
-                    <div id="res-loading" class="hidden text-center">
-                        <div class="w-12 h-12 border-4 border-brand-gold border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-                        <p class="font-medium text-gray-600">El maestro luthier virtual está analizando tu caso...</p>
-                    </div>
-
+                <div class="lg:w-1/2 p-12 bg-white flex flex-col justify-center min-h-[450px] text-left">
+                    <div id="res-empty" class="text-center text-gray-400">Analiza tus síntomas para ver el informe aquí.</div>
+                    <div id="res-loading" class="hidden text-center"><div class="w-12 h-12 border-4 border-brand-gold border-t-transparent rounded-full animate-spin mx-auto"></div></div>
                     <div id="res-final" class="hidden">
-                        <div class="flex items-center gap-3 mb-6">
-                            <div class="w-2 h-8 bg-brand-gold rounded-full"></div>
-                            <h3 class="text-2xl font-serif font-bold text-brand-dark">Informe Preliminar</h3>
-                        </div>
-                        <div id="texto-ia" class="text-gray-700 leading-relaxed space-y-4 text-lg"></div>
-                        <div class="mt-10 p-5 bg-yellow-50 rounded-2xl border-l-4 border-brand-gold flex items-start gap-4">
-                            <span class="text-2xl">⚠️</span>
-                            <p class="text-xs text-brand-wood font-medium">Este diagnóstico es una orientación basada en IA. No sustituye una revisión técnica física en el taller.</p>
-                        </div>
-                        <button onclick="document.getElementById('contacto').scrollIntoView()" class="mt-8 w-full border-2 border-brand-dark py-3 rounded-xl font-bold hover:bg-brand-dark hover:text-white transition">Solicitar Presupuesto Real</button>
+                        <h3 class="text-2xl font-serif font-bold text-brand-dark mb-4 border-l-4 border-brand-gold pl-4">Informe Preliminar</h3>
+                        <div id="texto-ia" class="text-gray-700 text-lg leading-relaxed"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Formulario de Contacto -->
-    <section id="contacto" class="py-24 bg-gray-50">
+    <!-- FORMULARIO DE CONTACTO RESTAURADO -->
+    <section id="formulario" class="py-24 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Solicita una Revisión</h2>
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Solicita un Presupuesto</h2>
             <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full mb-12"></div>
             
             <form id="form-revisión" class="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl border border-gray-100 text-left space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-2">Tu Nombre Completo</label>
-                        <input type="text" id="contacto-nombre" required class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-brand-gold bg-gray-50 transition" placeholder="Ej: Juan Pérez">
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Nombre Completo</label>
+                        <input type="text" id="contacto-nombre" required class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-brand-gold bg-gray-50" placeholder="Ej: Juan Pérez">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-2">Instrumento</label>
-                        <select id="contacto-instrumento" class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-brand-gold bg-gray-50 transition">
+                        <select id="contacto-instrumento" class="w-full p-4 rounded-xl border border-gray-200 bg-gray-50">
                             <option value="Piano">Piano</option>
                             <option value="Acordeón">Acordeón</option>
                             <option value="Otro">Otro Instrumento</option>
                         </select>
                     </div>
                 </div>
-                
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-2">Mensaje o Consulta</label>
-                    <textarea id="contacto-mensaje" rows="4" required class="w-full p-4 rounded-xl border border-gray-200 outline-none focus:ring-2 focus:ring-brand-gold bg-gray-50 transition resize-none" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+                    <textarea id="contacto-mensaje" rows="4" required class="w-full p-4 rounded-xl border border-gray-200 bg-gray-50 resize-none" placeholder="¿En qué podemos ayudarte?"></textarea>
                 </div>
-
-                <button type="submit" class="w-full bg-brand-gold text-white font-bold py-5 rounded-xl hover:bg-yellow-600 transition-all shadow-xl flex justify-center items-center gap-3">
+                <button type="submit" class="w-full bg-brand-gold text-white font-bold py-5 rounded-xl hover:bg-yellow-600 transition shadow-xl flex justify-center items-center gap-3">
                     <span>Enviar a WhatsApp Directo</span>
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 </button>
@@ -283,175 +257,90 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </section>
 
     <!-- Ubicación -->
-    <section id="ubicacion" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-serif font-bold mb-4">Ubicación del Taller</h2>
-            <p class="text-gray-600 mb-12 font-medium italic">Encuéntranos en Cuenca, Ecuador</p>
-            
+    <section id="ubicacion" class="py-24 bg-white text-center">
+        <h2 class="text-3xl font-serif font-bold mb-12">Ubicación del Taller</h2>
+        <div class="max-w-7xl mx-auto px-4">
             <div class="rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-black h-[450px]">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1992.32076844719!2d-78.96139536899068!3d-2.9190265054823494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd19f51f1b451b%3A0x67c589e1d5fa80e7!2sTecni%20Piano!5e0!3m2!1ses!2sec!4v1775879988549!5m2!1ses!2sec" width="1300" height="445" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1992.32076844719!2d-78.96139536899068!3d-2.9190265054823494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd19f51f1b451b%3A0x67c589e1d5fa80e7!2sTecni%20Piano!5e0!3m2!1ses!2sec!4v1775879988549!5m2!1ses!2sec" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-      
-    <!-- Pie de Página con degradado Vertical -->
-    <footer id="footer-contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white border-t border-brand-gold/10">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="flex flex-col items-center mb-12">
-                <div class="bg-white p-4 rounded-2xl mb-6 inline-block shadow-lg">
-                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-24 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
-                </div>
-                <p class="text-gray-400 mt-2">Maestros en el arte de la restauración musical.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
-                <!-- Botón WhatsApp -->
-                <a href="https://wa.me/593987550137" target="_blank" class="flex items-center gap-4 bg-green-600 px-8 py-4 rounded-2xl hover:bg-green-700 transition shadow-2xl w-full md:w-auto">
-                    <span class="text-3xl">📱</span>
-                    <div class="text-left">
-                        <span class="block text-xs uppercase opacity-70 font-bold">WhatsApp Directo</span>
-                        <span class="text-lg font-bold">+593 98 755 0137</span>
-                    </div>
+    <!-- Footer -->
+    <footer id="contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-white p-4 rounded-2xl mb-8 inline-block shadow-lg"><img src="LOGO TECNIPIANO 4.png" class="h-20 w-auto"></div>
+            <div class="flex flex-col md:flex-row justify-center gap-8 mb-12">
+                <a href="https://wa.me/593987550137" target="_blank" class="bg-green-600 px-8 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-green-700 transition shadow-2xl">📱 WhatsApp Directo</a>
+                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="hover:scale-110 transition-transform bg-brand-facebook px-8 py-4 rounded-2xl flex items-center gap-3 font-bold">
+                    <img src="logo facebook.png" alt="Facebook" class="w-8 h-8 object-contain">
+                    Facebook Oficial
                 </a>
-
-                <!-- Botón Facebook Footer -->
-                <a href="https://www.facebook.com/profile.php?id=100063671918281" target="_blank" class="flex items-center gap-4 bg-brand-facebook px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-2xl w-full md:w-auto">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    <div class="text-left">
-                        <span class="block text-xs uppercase opacity-70 font-bold">Síguenos</span>
-                        <span class="text-lg font-bold">Facebook</span>
-                    </div>
-                </a>
-
-                <div class="text-gray-400 text-left border-l border-gray-700 pl-8">
-                    <p class="flex items-center gap-2 mb-2 font-bold"><span class="text-brand-gold text-xl">📍</span> Cuenca, Ecuador</p>
-                    <p class="flex items-center gap-2 font-bold"><span class="text-brand-gold text-xl">🕒</span> Lun - Sáb: 09:00 - 18:00</p>
-                </div>
             </div>
-            
-            <div class="pt-12 border-t border-gray-800 text-gray-500 text-xs">
-                <p>&copy; 2026 TecniPiano. Excelencia en Luthería. Todos los derechos reservados.</p>
-            </div>
+            <p class="text-gray-500">&copy; 2026 TecniPiano - Cuenca, Ecuador.</p>
         </div>
     </footer>
 
     <script>
-        // --- LOGICA DEL CARRUSEL ---
+        // Carrusel
         document.addEventListener('DOMContentLoaded', () => {
             const inner = document.getElementById('carousel-inner');
             const slides = inner.children;
             const dotsCont = document.getElementById('carousel-dots');
-            const nextBtn = document.getElementById('nextBtn');
-            const prevBtn = document.getElementById('prevBtn');
             let idx = 0;
-
-            if (inner && dotsCont && nextBtn && prevBtn) {
-                for (let i = 0; i < slides.length; i++) {
-                    const dot = document.createElement('button');
-                    dot.className = `w-2 h-2 rounded-full bg-white/30 transition-all`;
-                    if(i === 0) dot.className = `w-6 h-2 rounded-full bg-brand-gold transition-all`;
-                    dot.onclick = () => { idx = i; updateCarousel(); };
-                    dotsCont.appendChild(dot);
-                }
-
-                function updateCarousel() {
-                    inner.style.transform = `translateX(-${idx * 100}%)`;
-                    Array.from(dotsCont.children).forEach((d, i) => {
-                        d.className = i === idx ? 'w-6 h-2 rounded-full bg-brand-gold transition-all' : 'w-2 h-2 rounded-full bg-white/30 transition-all';
-                    });
-                }
-
-                nextBtn.onclick = () => { idx = (idx + 1) % slides.length; updateCarousel(); };
-                prevBtn.onclick = () => { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); };
-                setInterval(() => { idx = (idx + 1) % slides.length; updateCarousel(); }, 6000);
+            for(let i=0; i<slides.length; i++) {
+                const dot = document.createElement('button');
+                dot.className = i===0 ? 'w-6 h-2 bg-brand-gold rounded-full' : 'w-2 h-2 bg-white/30 rounded-full';
+                dot.onclick = () => { idx=i; update(); };
+                dotsCont.appendChild(dot);
             }
+            function update() {
+                inner.style.transform = `translateX(-${idx*100}%)`;
+                Array.from(dotsCont.children).forEach((d, i) => d.className = i===idx ? 'w-6 h-2 bg-brand-gold rounded-full' : 'w-2 h-2 bg-white/30 rounded-full');
+            }
+            document.getElementById('nextBtn').onclick = () => { idx = (idx+1)%slides.length; update(); };
+            document.getElementById('prevBtn').onclick = () => { idx = (idx-1+slides.length)%slides.length; update(); };
+            setInterval(() => { idx = (idx+1)%slides.length; update(); }, 6000);
         });
 
-        // --- LÓGICA IA GROQ ---
-        // DEBES poner tu clave de Groq AQUÍ (empieza con gsk_)
-        const groqApiKey = "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"; 
-
-        async function fetchGroq(textoAEnviar) {
-            const instrumentSelect = document.getElementById('instrumento');
-            const instrument = instrumentSelect ? instrumentSelect.value : "Instrumento";
-            const url = "https://api.groq.com/openai/v1/chat/completions";
-            const body = {
-                model: "llama-3.3-70b-versatile",
-                messages: [
-                    {
-                        role: "system",
-                        content: "Eres el Maestro Luthier de TecniPiano en Cuenca, Ecuador. Analiza problemas técnicos de pianos y acordeones. Responde de forma profesional, amable y técnica en máximo 2 párrafos."
-                    },
-                    {
-                        role: "user",
-                        content: `Analiza este problema de un ${instrument}: ${textoAEnviar}`
-                    }
-                ],
-                temperature: 0.7
-            };
-
-            const response = await fetch(url, {
+        // IA Logic (Groq)
+        const groqApiKey = "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";
+        async function fetchGroq(text) {
+            const inst = document.getElementById('instrumento').value;
+            const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
                 method: "POST",
-                headers: { 
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${groqApiKey}`
-                },
-                body: JSON.stringify(body)
+                headers: { "Content-Type": "application/json", "Authorization": `Bearer ${groqApiKey}` },
+                body: JSON.stringify({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [{ role: "system", content: "Eres el luthier de TecniPiano. Da un diagnóstico técnico breve." }, { role: "user", content: `Falla en ${inst}: ${text}` }]
+                })
             });
-
-            const data = await response.json();
-            if (!response.ok) throw new Error(data.error?.message || "Error de Groq API");
+            const data = await res.json();
             return data.choices[0].message.content;
         }
 
         async function iniciarDiagnostico() {
-            const symptomsInput = document.getElementById('sintomas');
-            if (!symptomsInput) return;
-            const symptoms = symptomsInput.value;
-            const resultText = document.getElementById('texto-ia');
-            const loading = document.getElementById('res-loading');
-            const resultBox = document.getElementById('res-final');
-            const empty = document.getElementById('res-empty');
-            const btn = document.getElementById('btn-diagnostico');
-
-            if (!symptoms.trim()) {
-                alert("Por favor, describe el problema de tu instrumento.");
-                return;
-            }
-
-            if(empty) empty.classList.add('hidden');
-            if(resultBox) resultBox.classList.add('hidden');
-            if(loading) loading.classList.remove('hidden');
-            if(btn) btn.disabled = true;
-
+            const symptoms = document.getElementById('sintomas').value;
+            if(!symptoms.trim()) { alert("Escribe los síntomas"); return; }
+            document.getElementById('res-empty').classList.add('hidden');
+            document.getElementById('res-loading').classList.remove('hidden');
             try {
-                const response = await fetchGroq(symptoms);
-                if(loading) loading.classList.add('hidden');
-                if(resultBox) resultBox.classList.remove('hidden');
-                if(resultText) {
-                    const formatted = response
-                        .replace(/\n/g, '<br>')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    resultText.innerHTML = formatted;
-                }
-            } catch (error) {
-                if(loading) loading.classList.add('hidden');
-                if(empty) empty.classList.remove('hidden');
-                alert("Error de conexión con Groq: " + error.message);
-            } finally {
-                if(btn) btn.disabled = false;
+                const result = await fetchGroq(symptoms);
+                document.getElementById('res-loading').classList.add('hidden');
+                document.getElementById('res-final').classList.remove('hidden');
+                document.getElementById('texto-ia').innerHTML = result.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            } catch(e) {
+                alert("Error al conectar");
             }
         }
 
-        // Lógica del Formulario de Contacto
+        // Envío de Formulario a WhatsApp
         document.getElementById('form-revisión').onsubmit = function(e) {
             e.preventDefault();
             const nombre = document.getElementById('contacto-nombre').value;
             const instrumento = document.getElementById('contacto-instrumento').value;
             const mensaje = document.getElementById('contacto-mensaje').value;
-            const waUrl = `https://wa.me/593987550137?text=${encodeURIComponent(`Hola TecniPiano, mi nombre es ${nombre}. Quisiera solicitar una revisión para mi ${instrumento}. \n\nConsulta: ${mensaje}`)}`;
+            const waUrl = `https://wa.me/593987550137?text=${encodeURIComponent(`Hola TecniPiano, soy ${nombre}. Quisiera solicitar una revisión para mi ${instrumento}. \n\nConsulta: ${mensaje}`)}`;
             window.open(waUrl, '_blank');
         };
     </script>
