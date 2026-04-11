@@ -47,16 +47,23 @@
     <!-- Navegación -->
     <nav class="bg-brand-dark text-white fixed w-full z-50 shadow-2xl border-b border-brand-gold/20">
         <div class="max-w-7xl mx-auto px-4 h-24 flex justify-between items-center">
-            <div class="flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                <img src="LOGO%20TECNIPIANO%204.png" alt="Logo TecniPiano" class="h-20 w-auto object-contain" onerror="this.style.display='none'">
-                <span class="text-2xl font-serif font-bold text-brand-gold ml-2">TECNI<span class="text-white">PIANO</span></span>
+            <!-- LOGO SECCIÓN -->
+            <div class="flex items-center cursor-pointer group" onclick="window.scrollTo(0,0)">
+                <div class="bg-white/10 p-1.5 rounded-xl border border-white/20 mr-3 transition-all group-hover:bg-white/20">
+                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-14 md:h-16 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-2xl md:text-3xl font-serif font-bold text-brand-gold tracking-tighter">TECNI<span class="text-white">PIANO</span></span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-gray-400 font-bold">Cuenca - Ecuador</span>
+                </div>
             </div>
+
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#inicio" class="text-gray-300 hover:text-brand-gold transition">Inicio</a>
                 <a href="#servicios" class="text-gray-300 hover:text-brand-gold transition">Servicios</a>
                 <a href="#nosotros" class="text-gray-300 hover:text-brand-gold transition">Nosotros</a>
                 <a href="#diagnostico" class="text-brand-gold font-bold">Diagnóstico ✨</a>
-                <a href="#contacto" class="bg-brand-gold text-white px-6 py-2 rounded-full font-bold hover:bg-yellow-600 transition">Contacto</a>
+                <a href="#contacto" class="bg-brand-gold text-white px-6 py-2 rounded-full font-bold hover:bg-yellow-600 transition shadow-lg">Contacto</a>
             </div>
         </div>
     </nav>
@@ -145,9 +152,9 @@
                     <div id="carousel-inner" class="h-full">
                         <img src="afinacion.jpg" alt="Afinación" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Afinación';">
                         <img src="lubricando.jpg" alt="Mantenimiento" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Lubricación';">
-                        <img src="paino%20antigua.png" alt="Restauración" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Restauración';">
+                        <img src="paino antigua.png" alt="Restauración" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Restauración';">
                         <img src="desarmado.jpg" alt="Mecánica" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Desarme';">
-                        <img src="afinando%202.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
+                        <img src="afinando 2.jpg" alt="Tecnología" class="w-full h-full object-cover flex-shrink-0" onerror="this.src='https://placehold.co/800x450/1c1917/ffffff?text=Precisión';">
                     </div>
                     <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/40 p-2 rounded-full hover:bg-brand-gold transition z-10">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
@@ -218,7 +225,7 @@
         </div>
     </section>
 
-    <!-- NUEVO: Formulario de Contacto -->
+    <!-- Formulario de Contacto -->
     <section id="contacto" class="py-24 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Solicita una Revisión</h2>
@@ -253,26 +260,33 @@
         </div>
     </section>
 
-    <!-- Contacto (Pie de Página) -->
-    <footer id="footer-contacto" class="bg-brand-dark py-20 text-white">
+    <!-- Pie de Página -->
+    <footer id="footer-contacto" class="bg-brand-dark py-20 text-white border-t border-brand-gold/10">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-serif font-bold mb-8">Información de Contacto</h2>
+            <div class="flex flex-col items-center mb-12">
+                <div class="bg-white p-3 rounded-2xl mb-6 inline-block">
+                    <img src="LOGO TECNIPIANO 4.png" alt="Logo TecniPiano" class="h-16 w-auto object-contain" onerror="this.src='https://placehold.co/200x200/d97706/ffffff?text=TP';">
+                </div>
+                <h2 class="text-3xl font-serif font-bold">TecniPiano</h2>
+                <p class="text-gray-400 mt-2">Maestros en el arte de la restauración musical.</p>
+            </div>
+            
             <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-12">
                 <a href="https://wa.me/593987550137" target="_blank" class="flex items-center gap-4 bg-green-600 px-8 py-4 rounded-2xl hover:bg-green-700 transition shadow-2xl">
                     <span class="text-3xl">📱</span>
                     <div class="text-left">
-                        <span class="block text-xs uppercase opacity-70">WhatsApp Directo</span>
+                        <span class="block text-xs uppercase opacity-70 font-bold">WhatsApp Directo</span>
                         <span class="text-lg font-bold">+593 98 755 0137</span>
                     </div>
                 </a>
-                <div class="text-gray-400 text-left">
-                    <p class="flex items-center gap-2">📍 Cuenca, Ecuador</p>
-                    <p class="flex items-center gap-2">🕒 Lun - Sáb: 09:00 - 18:00</p>
+                <div class="text-gray-400 text-left border-l border-gray-700 pl-8">
+                    <p class="flex items-center gap-2 mb-2 font-bold"><span class="text-brand-gold text-xl">📍</span> Cuenca, Ecuador</p>
+                    <p class="flex items-center gap-2 font-bold"><span class="text-brand-gold text-xl">🕒</span> Lun - Sáb: 09:00 - 18:00</p>
                 </div>
             </div>
-            <div class="pt-12 border-t border-gray-800 flex flex-col md:justify-between items-center gap-6">
-                <img src="LOGO%20TECNIPIANO%204.png" alt="Logo" class="h-12 w-auto opacity-50">
-                <p class="text-gray-500 text-sm">&copy; 2026 TecniPiano. Excelencia en Luthería.</p>
+            
+            <div class="pt-12 border-t border-gray-800 text-gray-500 text-xs">
+                <p>&copy; 2026 TecniPiano. Excelencia en Luthería. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -311,7 +325,7 @@
 
         // --- LÓGICA IA GROQ ---
         // DEBES poner tu clave de Groq AQUÍ (empieza con gsk_)
-        const groqApiKey = "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"; 
+        const groqApiKey = "TU_GROQ_API_KEY_AQUI"; 
 
         async function fetchGroq(textoAEnviar) {
             const instrumentSelect = document.getElementById('instrumento');
@@ -351,10 +365,7 @@
 
         async function iniciarDiagnostico() {
             const symptomsInput = document.getElementById('sintomas');
-            if (!symptomsInput) {
-                console.error("No se encontró el campo de síntomas");
-                return;
-            }
+            if (!symptomsInput) return;
             
             const symptoms = symptomsInput.value;
             const resultText = document.getElementById('texto-ia');
@@ -368,7 +379,6 @@
                 return;
             }
 
-            // Interfaz en modo carga
             if(empty) empty.classList.add('hidden');
             if(resultBox) resultBox.classList.add('hidden');
             if(loading) loading.classList.remove('hidden');
@@ -376,37 +386,29 @@
 
             try {
                 const response = await fetchGroq(symptoms);
-                
                 if(loading) loading.classList.add('hidden');
                 if(resultBox) resultBox.classList.remove('hidden');
-                
                 if(resultText) {
                     const formatted = response
                         .replace(/\n/g, '<br>')
                         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                     resultText.innerHTML = formatted;
                 }
-                    
             } catch (error) {
                 if(loading) loading.classList.add('hidden');
                 if(empty) empty.classList.remove('hidden');
                 alert("Error de conexión con Groq: " + error.message);
-                console.error(error);
             } finally {
                 if(btn) btn.disabled = false;
             }
         }
 
-        // --- LÓGICA DEL FORMULARIO DE CONTACTO ---
         document.getElementById('form-revisión').onsubmit = function(e) {
             e.preventDefault();
             const nombre = document.getElementById('contacto-nombre').value;
             const instrumento = document.getElementById('contacto-instrumento').value;
             const mensaje = document.getElementById('contacto-mensaje').value;
-            
-            const textoFinal = `Hola TecniPiano, mi nombre es ${nombre}. Quisiera solicitar una revisión para mi ${instrumento}. \n\nConsulta: ${mensaje}`;
-            
-            const waUrl = `https://wa.me/593987550137?text=${encodeURIComponent(textoFinal)}`;
+            const waUrl = `https://wa.me/593987550137?text=${encodeURIComponent(`Hola TecniPiano, mi nombre es ${nombre}. Quisiera solicitar una revisión para mi ${instrumento}. \n\nConsulta: ${mensaje}`)}`;
             window.open(waUrl, '_blank');
         };
     </script>
