@@ -312,7 +312,7 @@
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${groqApiKey}` },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
-                    messages: [{ role: "system", content: "Eres el luthier de TecniPiano. Tienes mas de 30 años de experiencia.debes ser cordial y jovial. Da un diagnóstico técnico breve maximo 10 lineas" }, { role: "user", content: `Falla en ${inst}: ${text}` }]
+                    messages: [{ role: "system", content: "Eres el luthier de TecniPiano. Tienes mas de 30 años de experiencia.debes ser cordial y jovial. Da un diagnóstico técnico breve maximo 10 lineas y debes sugerir de forma agradable que debe pedir uns revisión," }, { role: "user", content: `Falla en ${inst}: ${text}` }]
                 })
             });
             const data = await res.json();
