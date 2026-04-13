@@ -98,6 +98,11 @@
             border-bottom-width: 0px;
             box-shadow: inset 0 4px 10px rgba(0,0,0,0.8);
         }
+
+        /* Estilo para la barra de scroll de la galería */
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
     </style>
 </head>
 <body class="bg-brand-light text-brand-dark font-sans">
@@ -153,17 +158,43 @@
             <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Especialidades del Taller</h2>
             <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full mb-16"></div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Pianos" class="h-72 w-full object-cover">
+                
+                <!-- PIANOS CARD -->
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaPianos()">
+                    <div class="relative h-72 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Pianos" class="h-72 w-full object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-brand-gold text-white px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                Ver Galería
+                            </span>
+                        </div>
+                    </div>
                     <div class="p-10">
-                        <h3 class="text-2xl font-serif font-bold mb-4">Pianos Acústicos</h3>
+                        <h3 class="text-2xl font-serif font-bold mb-4 flex items-center justify-between">
+                            Pianos Acústicos
+                            <span class="text-sm font-sans font-medium text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">Clic para ver fotos</span>
+                        </h3>
                         <p class="text-gray-600">Afinación profesional a 440Hz, regulación de maquinaria y restauración estética.</p>
                     </div>
                 </div>
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100">
-                    <img src="acordeones.png" alt="Acordeones" class="h-72 w-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
+                
+                <!-- ACORDEONES CARD -->
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaAcordeones()">
+                    <div class="relative h-72 w-full overflow-hidden">
+                        <img src="acordeones.png" alt="Acordeones" class="h-72 w-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
+                        <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                            <span class="bg-brand-gold text-white px-6 py-3 rounded-full font-bold shadow-lg flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                Ver Galería
+                            </span>
+                        </div>
+                    </div>
                     <div class="p-10">
-                        <h3 class="text-2xl font-serif font-bold mb-4">Acordeones</h3>
+                        <h3 class="text-2xl font-serif font-bold mb-4 flex items-center justify-between">
+                            Acordeones
+                            <span class="text-sm font-sans font-medium text-brand-gold bg-brand-gold/10 px-3 py-1 rounded-full">Clic para ver fotos</span>
+                        </h3>
                         <p class="text-gray-600">Afinación de voces, reparación de fuelles y ajuste de mecánica de todas las marcas.</p>
                     </div>
                 </div>
@@ -268,6 +299,119 @@
         </div>
     </section>
 
+    <!-- Modal Galería Acordeones -->
+    <div id="modal-galeria" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="cerrarGaleria(event)">
+        <div class="relative w-full max-w-5xl mx-auto p-6" onclick="event.stopPropagation()">
+            <!-- Botón Cerrar -->
+            <button onclick="cerrarGaleria(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-colors font-bold">&times;</button>
+            
+            <h3 class="text-brand-gold text-3xl font-serif font-bold mb-6 text-center">Galería de Acordeones</h3>
+            
+            <!-- Grid de imágenes -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[70vh] overflow-y-auto pr-2 custom-scrollbar pb-10">
+                
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="acordeones.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600'" alt="Limpieza de voces">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">LIMPIEZA DE VOCES</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1518258288544-245c613c77ea?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Afinado">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">AFINADO</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1596720050860-2646c243c2d4?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Pintado">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">PINTADO</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1598460590623-f36cf16a04bf?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Cambio de lengüetas">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">CAMBIO DE LENGÜETAS</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1528650393661-71fb3d5a4da4?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Arreglo de fuelle">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">ARREGLO DE FUELLE</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1524230659092-07f99a75c013?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Ajuste mecanismo">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">AJUSTE MECANISMO</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Galería Pianos -->
+    <div id="modal-galeria-pianos" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="cerrarGaleriaPianos(event)">
+        <div class="relative w-full max-w-5xl mx-auto p-6" onclick="event.stopPropagation()">
+            <!-- Botón Cerrar -->
+            <button onclick="cerrarGaleriaPianos(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-colors font-bold">&times;</button>
+            
+            <h3 class="text-brand-gold text-3xl font-serif font-bold mb-6 text-center">Galería de Pianos</h3>
+            
+            <!-- Grid de imágenes -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[70vh] overflow-y-auto pr-2 custom-scrollbar pb-10">
+                
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="desarmado.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600'" alt="Cambio de martillos">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">CAMBIO DE MARTILLOS</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="afinacion.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=600'" alt="Afinación">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">AFINACIÓN</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="afinando 2.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Calibración">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">CALIBRACIÓN DE MECANISMO</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="lubricando.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1621245009949-550f28e21727?q=80&w=600'" alt="Lubricación">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">LUBRICACIÓN</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="paino antigua.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Restauración">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">RESTAURACIÓN</h4>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
+                    <img src="https://images.unsplash.com/photo-1560662892-ab00f8da7906?q=80&w=600&auto=format&fit=crop" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" alt="Traslado">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                        <h4 class="text-white font-bold text-lg text-center tracking-widest">TRASLADO</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer id="contacto" class="bg-gradient-to-b from-brand-dark to-black py-20 text-white text-center">
         <div class="max-w-7xl mx-auto px-4">
@@ -314,7 +458,7 @@
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${groqApiKey}` },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
-                    messages: [{ role: "system", content: "Eres el luthier de TecniPiano. Tienes mas de 30 años de experiencia.debes ser cordial y jovial. Da un diagnóstico técnico breve maximo 10 lineas y debes sugerir de forma agradable que debe pedir uns revisión," }, { role: "user", content: `Falla en ${inst}: ${text}` }]
+                    messages: [{ role: "system", content: "Eres el luthier principal de TecniPiano, un maestro artesano con más de 30 años de experiencia dedicados en cuerpo y alma a la reparación, restauración y afinación de pianos y acordeones. Tu reputación se basa no solo en tu conocimiento técnico impecable, sino también en tu trato cordial, jovial y profundamente apasionado por la música y los instrumentos. Atiendes a cada cliente como si fuera un viejo amigo que comparte tu amor por el arte.\nTu misión es recibir una descripción detallada de los síntomas que presenta un instrumento y proporcionar un diagnóstico técnico breve y preciso (máximo 10 líneas de texto). Este diagnóstico debe ser claro, utilizar terminología técnica correcta pero explicada de forma sencilla, y reflejar tu vasta experiencia.\nTras el diagnóstico técnico, debes añadir un párrafo final con una sugerencia de acción agradable y motivadora para el cliente, siguiendo estas reglas estrictas:\n\nRegla A: Si el instrumento descrito es un PIANO (de cola, vertical, digital de alta gama, etc.): Debes sugerir de forma muy agradable que la mejor opción es pedir una visita técnica a domicilio. Explica brevemente por qué es mejor revisarlo en su entorno (acústica, estabilidad, etc.) y anímalos a agendarla para devolverle la vida a su piano.\nRegla B: Si el instrumento descrito es un ACORDEÓN (de botones, de teclas, concertina, etc.): Debes sugerir de forma muy agradable que lo mejor es traer el instrumento directamente al taller de TecniPiano. Explica que en el taller tienes las herramientas de precisión y el ambiente controlado necesarios para una revisión profunda y una reparación óptima. Anímalos a visitarte pronto." }, { role: "user", content: `Falla en ${inst}: ${text}` }]
                 })
             });
             const data = await res.json();
@@ -345,6 +489,52 @@
             const waUrl = `https://wa.me/593987550137?text=${encodeURIComponent(`Hola TecniPiano, soy ${nombre}. Quisiera solicitar una revisión para mi ${instrumento}. \n\nConsulta: ${mensaje}`)}`;
             window.open(waUrl, '_blank');
         };
+
+        // Lógica de Galería de Acordeones
+        function abrirGaleriaAcordeones() {
+            const modal = document.getElementById('modal-galeria');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Evita que la página haga scroll detrás
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+
+        function cerrarGaleria(event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById('modal-galeria');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            document.body.style.overflow = 'auto'; // Restaura el scroll
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Lógica de Galería de Pianos
+        function abrirGaleriaPianos() {
+            const modal = document.getElementById('modal-galeria-pianos');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+
+        function cerrarGaleriaPianos(event) {
+            if (event) event.preventDefault();
+            const modal = document.getElementById('modal-galeria-pianos');
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
     </script>
 </body>
 </html>
