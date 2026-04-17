@@ -160,7 +160,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
                 
                 <!-- PIANOS CARD -->
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaPianos()">
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaPianos(event)">
                     <div class="relative h-72 w-full overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=2070&auto=format&fit=crop" alt="Pianos" class="h-72 w-full object-cover group-hover:scale-110 transition duration-700">
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
@@ -180,7 +180,7 @@
                 </div>
                 
                 <!-- ACORDEONES CARD -->
-                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaAcordeones()">
+                <div class="group bg-brand-light rounded-3xl overflow-hidden shadow-xl transition-all hover:-translate-y-2 border border-gray-100 cursor-pointer" onclick="abrirGaleriaAcordeones(event)">
                     <div class="relative h-72 w-full overflow-hidden">
                         <img src="acordeones.png" alt="Acordeones" class="h-72 w-full object-cover group-hover:scale-110 transition duration-700" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop'">
                         <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
@@ -224,6 +224,57 @@
                 <button id="prevBtn" class="absolute left-4 top-1/2 bg-black/50 p-2 rounded-full z-10">←</button>
                 <button id="nextBtn" class="absolute right-4 top-1/2 bg-black/50 p-2 rounded-full z-10">→</button>
                 <div id="carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICACIONES Y AVALES (NUEVA SECCIÓN) -->
+    <section id="certificaciones" class="py-24 bg-gradient-to-b from-gray-50 to-white relative border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Avales Internacionales</h2>
+            <div class="h-1.5 w-24 bg-brand-gold mx-auto rounded-full mb-6"></div>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
+                La excelencia no se improvisa. El trabajo de nuestro Maestro Luthier, <strong>Diego F. Deleg Yánez</strong>, está respaldado por las instituciones de tecnología pianística más prestigiosas del mundo.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Certificado 1: Paco Piano -->
+                <div class="group relative bg-white p-3 rounded-2xl shadow-lg border border-gray-100 hover:border-brand-gold transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+                    <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50 h-64 flex items-center justify-center p-4">
+                        <img src="certificado11.jpg" alt="Certificado Paco Piano Technology" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="mt-5 pb-3">
+                        <p class="font-bold text-brand-dark font-serif text-xl">Paco Piano Technology</p>
+                        <p class="text-brand-gold text-xs font-bold uppercase tracking-widest mt-2">Puerto Rico</p>
+                        <p class="text-gray-500 text-sm mt-2 font-medium">Mantenimiento de Pianos Verticales y de Cola</p>
+                    </div>
+                </div>
+
+                <!-- Certificado 2: Asociación Mundial -->
+                <div class="group relative bg-white p-3 rounded-2xl shadow-lg border border-gray-100 hover:border-brand-gold transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+                    <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50 h-64 flex items-center justify-center p-4">
+                        <img src="certificado21.jpg" alt="Asociación Mundial de Luthiers" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="mt-5 pb-3">
+                        <p class="font-bold text-brand-dark font-serif text-xl">Asociación Mundial de Luthiers</p>
+                        <p class="text-brand-gold text-xs font-bold uppercase tracking-widest mt-2">Reconocimiento Internacional</p>
+                        <p class="text-gray-500 text-sm mt-2 font-medium">Artesano de Piano Profesional</p>
+                    </div>
+                </div>
+
+                <!-- Certificado 3: Escuela Buenos Aires -->
+                <div class="group relative bg-white p-3 rounded-2xl shadow-lg border border-gray-100 hover:border-brand-gold transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+                    <div class="overflow-hidden rounded-xl border border-gray-200 bg-gray-50 h-64 flex items-center justify-center p-4">
+                        <img src="certificado31.jpg" alt="Diplomatura en Afinación Profesional" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700">
+                    </div>
+                    <div class="mt-5 pb-3">
+                        <p class="font-bold text-brand-dark font-serif text-xl">Escuela de Tec. Pianística</p>
+                        <p class="text-brand-gold text-xs font-bold uppercase tracking-widest mt-2">Buenos Aires, Argentina</p>
+                        <p class="text-gray-500 text-sm mt-2 font-medium">Diplomatura en Afinación Profesional</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -300,10 +351,10 @@
     </section>
 
     <!-- Modal Galería Acordeones -->
-    <div id="modal-galeria" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="cerrarGaleria(event)">
-        <div class="relative w-full max-w-5xl mx-auto p-6" onclick="event.stopPropagation()">
+    <div id="modal-galeria" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-500 backdrop-blur-sm" onclick="cerrarGaleria(event)">
+        <div id="modal-content-acordeones" class="relative w-full max-w-5xl mx-auto p-6 transform scale-0 opacity-0 transition-all duration-500 ease-out" onclick="event.stopPropagation()">
             <!-- Botón Cerrar -->
-            <button onclick="cerrarGaleria(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-colors font-bold">&times;</button>
+            <button onclick="cerrarGaleria(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-all duration-300 hover:rotate-90 font-bold">&times;</button>
             
             <h3 class="text-brand-gold text-3xl font-serif font-bold mb-6 text-center">Galería de Acordeones</h3>
             
@@ -356,10 +407,10 @@
     </div>
 
     <!-- Modal Galería Pianos -->
-    <div id="modal-galeria-pianos" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-sm" onclick="cerrarGaleriaPianos(event)">
-        <div class="relative w-full max-w-5xl mx-auto p-6" onclick="event.stopPropagation()">
+    <div id="modal-galeria-pianos" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center opacity-0 transition-opacity duration-500 backdrop-blur-sm" onclick="cerrarGaleriaPianos(event)">
+        <div id="modal-content-pianos" class="relative w-full max-w-5xl mx-auto p-6 transform scale-0 opacity-0 transition-all duration-500 ease-out" onclick="event.stopPropagation()">
             <!-- Botón Cerrar -->
-            <button onclick="cerrarGaleriaPianos(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-colors font-bold">&times;</button>
+            <button onclick="cerrarGaleriaPianos(event)" class="absolute -top-10 right-4 md:-top-12 md:-right-8 text-white hover:text-brand-gold text-4xl transition-all duration-300 hover:rotate-90 font-bold">&times;</button>
             
             <h3 class="text-brand-gold text-3xl font-serif font-bold mb-6 text-center">Galería de Pianos</h3>
             
@@ -367,21 +418,21 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 h-[70vh] overflow-y-auto pr-2 custom-scrollbar pb-10">
                 
                 <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
-                    <img src="MARTILLOS.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600'" alt="Cambio de martillos">
+                    <img src="desarmado.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=600'" alt="Cambio de martillos">
                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
                         <h4 class="text-white font-bold text-lg text-center tracking-widest">CAMBIO DE MARTILLOS</h4>
                     </div>
                 </div>
 
                 <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
-                    <img src="AFINACION PIANO.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=600'" alt="Afinación">
+                    <img src="afinacion.jpg" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1552422535-c45813c61732?q=80&w=600'" alt="Afinación">
                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
                         <h4 class="text-white font-bold text-lg text-center tracking-widest">AFINACIÓN</h4>
                     </div>
                 </div>
 
                 <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
-                    <img src="MECANISMO PIANO.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Calibración">
+                    <img src="afinando 2.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Calibración">
                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
                         <h4 class="text-white font-bold text-lg text-center tracking-widest">CALIBRACIÓN DE MECANISMO</h4>
                     </div>
@@ -395,7 +446,7 @@
                 </div>
 
                 <div class="relative overflow-hidden rounded-2xl border-2 border-white/10 hover:border-brand-gold transition-all duration-300 shadow-xl group">
-                    <img src="LIJANDO.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Restauración">
+                    <img src="paino antigua.png" class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=600'" alt="Restauración">
                     <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
                         <h4 class="text-white font-bold text-lg text-center tracking-widest">RESTAURACIÓN</h4>
                     </div>
@@ -491,49 +542,96 @@
         };
 
         // Lógica de Galería de Acordeones
-        function abrirGaleriaAcordeones() {
+        function abrirGaleriaAcordeones(e) {
             const modal = document.getElementById('modal-galeria');
+            const content = document.getElementById('modal-content-acordeones');
+            
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Evita que la página haga scroll detrás
             
+            // Calculamos la posición exacta del clic relativa a la ventana
+            if (e) {
+                const rect = content.getBoundingClientRect();
+                const originX = e.clientX - rect.left;
+                const originY = e.clientY - rect.top;
+                content.style.transformOrigin = `${originX}px ${originY}px`;
+            } else {
+                content.style.transformOrigin = 'center center';
+            }
+
+            // Aseguramos que inicie en escala 0
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-0', 'opacity-0');
+
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.classList.add('opacity-100');
+                content.classList.remove('scale-0', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
             }, 10);
         }
 
         function cerrarGaleria(event) {
             if (event) event.preventDefault();
             const modal = document.getElementById('modal-galeria');
+            const content = document.getElementById('modal-content-acordeones');
+            
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-0', 'opacity-0');
+            
             document.body.style.overflow = 'auto'; // Restaura el scroll
             
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300);
+            }, 500); // 500ms para coincidir con la transición
         }
 
         // Lógica de Galería de Pianos
-        function abrirGaleriaPianos() {
+        function abrirGaleriaPianos(e) {
             const modal = document.getElementById('modal-galeria-pianos');
+            const content = document.getElementById('modal-content-pianos');
+            
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+
+            // Calculamos la posición exacta del clic relativa a la ventana
+            if (e) {
+                const rect = content.getBoundingClientRect();
+                const originX = e.clientX - rect.left;
+                const originY = e.clientY - rect.top;
+                content.style.transformOrigin = `${originX}px ${originY}px`;
+            } else {
+                content.style.transformOrigin = 'center center';
+            }
+
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-0', 'opacity-0');
+
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.classList.add('opacity-100');
+                content.classList.remove('scale-0', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
             }, 10);
         }
 
         function cerrarGaleriaPianos(event) {
             if (event) event.preventDefault();
             const modal = document.getElementById('modal-galeria-pianos');
+            const content = document.getElementById('modal-content-pianos');
+            
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-0', 'opacity-0');
+            
             document.body.style.overflow = 'auto';
+            
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300);
+            }, 500); // 500ms para coincidir con la transición
         }
     </script>
 </body>
